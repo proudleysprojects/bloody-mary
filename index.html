@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Proudley's Projects</title>
-
-
+<title>The Farrow Bloody Mary Compendium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,400;0,600;0,800;1,600&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink:    #1a1a1a;
@@ -21,7 +22,7 @@
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    font-family: "Times New Roman", Times, serif;
+    font-family: "Archivo", system-ui, -apple-system, sans-serif;
     color: var(--ink);
     line-height: 1.6;
     background: var(--bg);
@@ -41,7 +42,7 @@
   .title { display: flex; align-items: baseline; gap: 10px; }
   .title .glass { display: none; }
   h1 {
-    font-family: "Times New Roman", Times, serif;
+    font-family: "Archivo Black", sans-serif;
     font-size: 20px; margin: 0; letter-spacing: -.01em;
     color: var(--ink); font-weight: 800;
   }
@@ -51,9 +52,8 @@
 
   /* nav links on the right — plain floating text buttons */
   #headerActions { display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
-  .toolnav { display: inline-flex; gap: 22px; flex-wrap: wrap; align-items: center; }
   .navlink {
-    font-family: "Times New Roman", Times, serif; font-weight: 600; font-size: 14.5px;
+    font-family: "Archivo", sans-serif; font-weight: 600; font-size: 14.5px;
     background: none; border: none; box-shadow: none; padding: 4px 0; margin: 0;
     color: var(--muted); cursor: pointer; text-transform: none; letter-spacing: 0;
     border-bottom: 2px solid transparent; border-radius: 0;
@@ -64,7 +64,7 @@
 
   /* ---------- BUTTONS ---------- */
   button {
-    font-family: "Times New Roman", Times, serif; font-weight: 600; font-size: 14px;
+    font-family: "Archivo", sans-serif; font-weight: 600; font-size: 14px;
     cursor: pointer; border: 1px solid var(--line-2); border-radius: var(--radius);
     background: #fff; color: var(--ink); padding: 9px 15px;
     transition: background .12s, border-color .12s;
@@ -86,15 +86,15 @@
     margin: 0 0 22px; padding: 0;
     background: none; border: none; box-shadow: none;
   }
-  .toolbar label { font-family: "Times New Roman", Times, serif; font-weight: 600; font-size: 13px; color: var(--muted); margin-right: 2px; text-transform: none; text-shadow: none; }
+  .toolbar label { font-family: "Archivo", sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); margin-right: 2px; text-transform: none; text-shadow: none; }
   select, input[type=text], input[type=search], input[type=email], input[type=password], input[type=date], textarea {
-    font-family: "Times New Roman", Times, serif; font-weight: 500; font-size: 14px;
+    font-family: "Archivo", sans-serif; font-weight: 500; font-size: 14px;
     color: var(--ink); background: #fff;
     border: 1px solid var(--line-2); border-radius: var(--radius); padding: 9px 12px; width: 100%;
   }
   select { width: auto; cursor: pointer; }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--ink); box-shadow: none; }
-  .count { margin-left: auto; font-family: "Times New Roman", Times, serif; font-weight: 600; font-size: 13px; color: var(--faint); background: none; border: none; padding: 0; }
+  .count { margin-left: auto; font-family: "Archivo", sans-serif; font-weight: 600; font-size: 13px; color: var(--faint); background: none; border: none; padding: 0; }
   .search { flex: 1; min-width: 160px; max-width: 320px; }
 
   /* ---------- RECIPE GRID ---------- */
@@ -115,19 +115,19 @@
   .card-accent { display: none !important; }
   .card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; }
   .card-name {
-    font-family: "Times New Roman", Times, serif; font-weight: 800;
+    font-family: "Archivo", sans-serif; font-weight: 800;
     font-size: 19px; margin: 0; line-height: 1.15; letter-spacing: -.01em;
     color: var(--ink) !important; text-transform: none;
   }
-  .card-source { font-family: "Times New Roman", Times, serif; font-style: normal; font-weight: 500; font-size: 13px; margin: 3px 0 0; color: var(--muted); opacity: 1; }
+  .card-source { font-family: "Archivo", sans-serif; font-style: normal; font-weight: 500; font-size: 13px; margin: 3px 0 0; color: var(--muted); opacity: 1; }
   .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0 0; }
   .tag {
-    font-family: "Times New Roman", Times, serif; font-weight: 600; font-size: 11.5px;
+    font-family: "Archivo", sans-serif; font-weight: 600; font-size: 11.5px;
     padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line-2);
     display: inline-flex; align-items: center; gap: 4px; text-transform: none;
   }
   .sec-label {
-    font-family: "Times New Roman", Times, serif; font-weight: 700; font-size: 11px;
+    font-family: "Archivo", sans-serif; font-weight: 700; font-size: 11px;
     text-transform: uppercase; letter-spacing: .07em; color: var(--faint);
     display: block; background: none; padding: 0; border: none; border-radius: 0;
     margin: 16px 0 6px; transform: none;
@@ -140,7 +140,7 @@
 
   /* ---------- SCORE ---------- */
   .score {
-    font-family: "Times New Roman", Times, serif; font-weight: 800; white-space: nowrap;
+    font-family: "Archivo", sans-serif; font-weight: 800; white-space: nowrap;
     background: none; border: none; border-radius: 0; padding: 0; box-shadow: none;
     transform: none; font-size: 17px; color: var(--ink);
   }
@@ -158,7 +158,7 @@
   .card .photo-thumb { max-height: 200px; }
   .meta-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0 0; }
   .meta-pill {
-    font-family: "Times New Roman", Times, serif; font-weight: 500; font-size: 12px;
+    font-family: "Archivo", sans-serif; font-weight: 500; font-size: 12px;
     padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line);
     background: #fafafa; display: inline-flex; gap: 5px; align-items: center; color: var(--muted);
   }
@@ -173,13 +173,13 @@
   .detail-cols { columns: auto; }
   @media (min-width: 900px){ .detail-cols { column-count: 2; column-gap: 48px; } .detail-cols > *:first-child { margin-top: 0; } }
   .detail h1.detail-name {
-    font-family: "Times New Roman", Times, serif; color: var(--ink);
+    font-family: "Archivo Black", sans-serif; color: var(--ink);
     font-size: clamp(28px, 5vw, 44px); line-height: 1.05; margin: 0 0 6px;
     text-transform: none; transform: none; text-shadow: none; letter-spacing: -.02em;
   }
-  .detail .by { font-family: "Times New Roman", Times, serif; font-style: normal; font-weight: 500; opacity: 1; color: var(--muted); margin: 0 0 18px; font-size: 15px; }
+  .detail .by { font-family: "Archivo", sans-serif; font-style: normal; font-weight: 500; opacity: 1; color: var(--muted); margin: 0 0 18px; font-size: 15px; }
   .section-title {
-    font-family: "Times New Roman", Times, serif; font-weight: 700; text-transform: uppercase;
+    font-family: "Archivo", sans-serif; font-weight: 700; text-transform: uppercase;
     font-size: 12px; letter-spacing: .08em; color: var(--faint); margin: 26px 0 10px;
     display: block; background: none; padding: 0; border: none; border-radius: 0; transform: none;
     break-after: avoid;
@@ -191,11 +191,11 @@
   .related-card {
     background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
     box-shadow: none; padding: 14px; cursor: pointer; text-align: left;
-    font-family: "Times New Roman", Times, serif; transition: border-color .12s, box-shadow .12s;
+    font-family: "Archivo", sans-serif; transition: border-color .12s, box-shadow .12s;
     transform: none !important;
   }
   .related-card:hover { border-color: var(--line-2); box-shadow: 0 6px 20px rgba(0,0,0,.06); }
-  .related-card .rc-name { font-family: "Times New Roman", Times, serif; font-weight: 800; text-transform: none; color: var(--ink); font-size: 15px; margin: 0 0 6px; }
+  .related-card .rc-name { font-family: "Archivo", sans-serif; font-weight: 800; text-transform: none; color: var(--ink); font-size: 15px; margin: 0 0 6px; }
   .related-card img { width: 100%; height: 100px; object-fit: cover; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 8px; }
 
   /* ---------- GALLERY ---------- */
@@ -216,29 +216,29 @@
   .blog-list { max-width: 720px; margin: 0 auto; }
   .post-item { padding: 22px 0; border-bottom: 1px solid var(--line); cursor: pointer; }
   .post-item:hover .post-title { color: var(--accent); }
-  .post-title { font-family: "Times New Roman", Times, serif; font-size: 24px; margin: 0 0 4px; letter-spacing: -.01em; }
+  .post-title { font-family: "Archivo Black", sans-serif; font-size: 24px; margin: 0 0 4px; letter-spacing: -.01em; }
   .post-meta { font-size: 13px; color: var(--faint); margin: 0 0 8px; }
   .post-excerpt { color: var(--muted); margin: 0; }
   .post-full { max-width: 720px; margin: 0 auto; }
-  .post-full h1 { font-family: "Times New Roman", Times, serif; font-size: clamp(28px,5vw,42px); line-height: 1.1; margin: 0 0 8px; letter-spacing: -.02em; }
+  .post-full h1 { font-family: "Archivo Black", sans-serif; font-size: clamp(28px,5vw,42px); line-height: 1.1; margin: 0 0 8px; letter-spacing: -.02em; }
   .post-full .post-meta { margin-bottom: 24px; }
   .post-body { font-size: 17px; line-height: 1.75; white-space: pre-wrap; }
 
   /* ---------- ABOUT ---------- */
   .about { max-width: 680px; margin: 0 auto; font-size: 17px; line-height: 1.75; }
-  .about h2 { font-family: "Times New Roman", Times, serif; font-size: clamp(26px,5vw,38px); margin: 0 0 18px; letter-spacing: -.02em; }
+  .about h2 { font-family: "Archivo Black", sans-serif; font-size: clamp(26px,5vw,38px); margin: 0 0 18px; letter-spacing: -.02em; }
   .about p { color: #333; }
 
   /* ---------- FIELDS / FORM ---------- */
   .field { margin-bottom: 15px; }
-  .field label { display: block; font-family: "Times New Roman", Times, serif; font-weight: 700; font-size: 12.5px; text-transform: none; margin-bottom: 5px; color: var(--ink); }
+  .field label { display: block; font-family: "Archivo", sans-serif; font-weight: 700; font-size: 12.5px; text-transform: none; margin-bottom: 5px; color: var(--ink); }
   .row { display: flex; gap: 14px; }
   .row > .field { flex: 1; }
   .form-actions { display: flex; gap: 10px; margin-top: 8px; }
   .muted { font-weight: 400; color: var(--muted); font-size: 14px; }
 
   .rate-wrap { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-  .rate-num { font-family: "Times New Roman", Times, serif; font-weight: 800; font-size: 22px; color: var(--ink); background: none; border: none; border-radius: 0; padding: 0; box-shadow: none; min-width: 56px; text-align: left; }
+  .rate-num { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 22px; color: var(--ink); background: none; border: none; border-radius: 0; padding: 0; box-shadow: none; min-width: 56px; text-align: left; }
   .rate-num small { font-size: 13px; color: var(--faint); }
   input[type=range] {
     -webkit-appearance: none; appearance: none; height: 4px; padding: 0;
@@ -254,7 +254,7 @@
   .emoji-grid button { font-size: 19px; padding: 6px; box-shadow: none; border: 1px solid transparent; background: transparent; }
   .emoji-grid button:hover { border-color: var(--line-2); background: #fff; }
 
-  .chip { font-family: "Times New Roman", Times, serif; font-weight: 600; font-size: 12px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line-2); display: inline-flex; align-items: center; gap: 4px; text-transform: none; cursor: pointer; line-height: 1.5; }
+  .chip { font-family: "Archivo", sans-serif; font-weight: 600; font-size: 12px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line-2); display: inline-flex; align-items: center; gap: 4px; text-transform: none; cursor: pointer; line-height: 1.5; }
   .chip.pick { opacity: .5; }
   .chip.pick.on { opacity: 1; box-shadow: inset 0 0 0 1px var(--ink); }
 
@@ -265,7 +265,7 @@
   .empty { text-align: center; padding: 70px 24px; border: 1px dashed var(--line-2); border-radius: var(--radius); }
   .empty .big { width: 64px; height: 64px; margin: 0 auto 6px; opacity: .5; }
   .empty .big svg { width: 100%; height: 100%; }
-  .empty p { margin: 14px 0 0; font-family: "Times New Roman", Times, serif; font-weight: 600; font-size: 16px; color: var(--muted); }
+  .empty p { margin: 14px 0 0; font-family: "Archivo", sans-serif; font-weight: 600; font-size: 16px; color: var(--muted); }
 
   /* ---------- BANNERS ---------- */
   .banner { border: 1px solid; border-radius: var(--radius); padding: 11px 15px; font-weight: 500; font-size: 14px; margin-bottom: 18px; box-shadow: none; display: none; }
@@ -278,7 +278,7 @@
   .modal-bg.show { display: flex; }
   .modal { background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.2); width: 100%; max-width: 540px; padding: 26px; }
   .modal.wide { max-width: 620px; }
-  .modal h2 { font-family: "Times New Roman", Times, serif; margin: 0 0 18px; font-size: 22px; text-transform: none; color: var(--ink); text-shadow: none; transform: none; }
+  .modal h2 { font-family: "Archivo Black", sans-serif; margin: 0 0 18px; font-size: 22px; text-transform: none; color: var(--ink); text-shadow: none; transform: none; }
 
   .spinner { display: inline-block; width: 15px; height: 15px; border: 2px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; vertical-align: -2px; }
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -287,173 +287,95 @@
   .lightbox.show { display: flex; }
   .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 6px; }
 
+  /* ============================================================
+     RESPONSIVE — widescreen down to small mobile
+     ============================================================ */
+
+  /* very wide screens: let content breathe but don't over-stretch */
+  @media (min-width: 1500px){
+    .wrap { max-width: 1360px; }
+    #list { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
+  }
+
+  /* tablet / small laptop: header starts to feel tight */
+  @media (max-width: 860px){
+    header.app { gap: 12px 18px; }
+    #headerActions { gap: 16px 18px; row-gap: 10px; }
+    .navlink { font-size: 14px; }
+    #list { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+    .cms-grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+  }
+
+  /* stack the header: title on top, nav wraps beneath, full-width */
+  @media (max-width: 680px){
+    header.app {
+      flex-direction: column; align-items: stretch;
+      padding: 16px 0 14px; margin-bottom: 22px;
+    }
+    .title { justify-content: flex-start; }
+    #headerActions {
+      width: 100%; gap: 14px 18px; row-gap: 10px;
+      padding-top: 12px; border-top: 1px solid var(--line);
+    }
+    .toolnav { gap: 14px 18px; }
+    /* comfortable tap targets on nav */
+    .navlink { padding: 4px 0; font-size: 15px; }
+
+    /* single-column everything */
+    #list, .cms-grid, .related-grid, .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+
+    /* detail: never two columns on phones */
+    .detail-cols { column-count: 1 !important; }
+
+    /* modals fill the screen with breathing room */
+    .modal-bg { padding: 16px 10px; align-items: flex-start; }
+    .modal, .modal.wide { max-width: 100%; padding: 20px 18px; }
+
+    .tool-title { font-size: clamp(24px, 8vw, 32px); }
+    h1 { font-size: 19px; }
+  }
+
+  /* small phones */
+  @media (max-width: 420px){
+    .wrap { padding: 0 14px 80px; }
+    .card, .cms-card { padding: 16px; }
+    .card-foot { flex-wrap: wrap; }
+    .card-foot button { flex: 1; min-width: 0; }
+    .toolbar { gap: 8px; }
+    .search { max-width: none; }
+    /* form rows already stack via .row rule below */
+    .rt-toolbar { gap: 3px; }
+    .rt-toolbar button { padding: 5px 7px; font-size: 12px; }
+    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+  }
+
+  /* stack any two-up form rows on narrow screens */
   @media (max-width: 600px){
     .row { flex-direction: column; gap: 0; }
-    header.app { padding: 18px 0; }
-    #headerActions { gap: 16px; }
+    .form-actions { flex-wrap: wrap; }
+    .form-actions button { flex: 1; min-width: 120px; }
   }
 
-  /* ---------- HOME (plain text tool list) ---------- */
-  .home { max-width: 720px; margin: 20px auto 0; }
-  .home-intro { color: var(--muted); font-size: 16px; margin: 0 0 28px; }
-  .tool-list { list-style: none; margin: 0; padding: 0; counter-reset: tool; }
-  .tool-row { padding: 22px 0; border-bottom: 1px solid var(--line); }
-  .tool-link {
-    font-family: "Times New Roman", Times, serif; font-size: clamp(22px, 3vw, 30px);
-    text-decoration: none; color: var(--ink); letter-spacing: -.01em;
-    display: inline-block; transition: color .12s;
-  }
-  .tool-link:hover { color: var(--accent); }
-  .tool-desc { display: block; color: var(--muted); font-size: 15px; margin-top: 4px; }
-
-  /* ---------- TOOL PAGES ---------- */
-  .tool-page { max-width: 900px; margin: 0 auto; }
-  .tool-title { font-family: "Times New Roman", Times, serif; font-size: clamp(26px,5vw,40px); margin: 0 0 10px; letter-spacing: -.02em; }
-
-  /* ---------- CMS ---------- */
-  .cms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
-  .cms-card {
-    text-align: left; background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 18px; cursor: pointer; font-family: "Times New Roman", Times, serif;
-    transition: border-color .12s, box-shadow .12s;
-  }
-  .cms-card:hover { border-color: var(--line-2); box-shadow: 0 6px 20px rgba(0,0,0,.06); }
-  .cms-card-title { font-family: "Times New Roman", Times, serif; font-size: 18px; margin: 0 0 8px; letter-spacing: -.01em; }
-  .cms-card-excerpt { color: var(--muted); font-size: 14px; margin: 0; line-height: 1.55; }
-  .cms-full { max-width: 720px; margin: 0 auto; }
-  .cms-full-title { font-family: "Times New Roman", Times, serif; font-size: clamp(28px,5vw,44px); line-height: 1.08; margin: 0 0 8px; letter-spacing: -.02em; }
-  .cms-body { font-size: 17px; line-height: 1.75; }
-  .cms-body h2 { font-family: "Times New Roman", Times, serif; font-size: 24px; margin: 28px 0 10px; }
-  .cms-body h3 { font-family: "Times New Roman", Times, serif; font-size: 19px; margin: 22px 0 8px; }
-  .cms-body img, .cms-body video { max-width: 100%; border-radius: var(--radius); margin: 14px 0; display: block; }
-  .cms-body a { color: var(--accent); text-decoration: underline; }
-  .cms-body blockquote { margin: 16px 0; padding: 4px 0 4px 18px; border-left: 3px solid var(--line-2); color: var(--muted); }
-  .cms-body ul, .cms-body ol { padding-left: 22px; }
-  .rt-embed, .cms-body .rt-embed { position: relative; padding-bottom: 56.25%; height: 0; margin: 16px 0; }
-  .rt-embed iframe, .cms-body iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: var(--radius); }
-
-  /* rich text editor */
-  .rt-toolbar { display: flex; flex-wrap: wrap; gap: 4px; border: 1px solid var(--line-2); border-bottom: none; border-radius: 10px 10px 0 0; padding: 8px; background: #fafafa; }
-  .rt-toolbar button { padding: 5px 9px; font-size: 13px; font-weight: 600; background: #fff; border: 1px solid var(--line); box-shadow: none; }
-  .rt-toolbar button:hover { background: #f0f0f0; }
-  .rt-sep { width: 1px; background: var(--line-2); margin: 2px 4px; align-self: stretch; }
-  .rt-editor {
-    border: 1px solid var(--line-2); border-radius: 0 0 10px 10px; padding: 14px 16px;
-    min-height: 220px; max-height: 460px; overflow-y: auto; font-size: 16px; line-height: 1.7; outline: none; background: #fff;
-  }
-  .rt-editor:focus { border-color: var(--ink); }
-  .rt-editor img, .rt-editor video { max-width: 100%; border-radius: 8px; margin: 8px 0; }
-  .rt-editor .rt-embed { background: #f0f0f0; }
-  .rt-editor h2 { font-size: 22px; margin: 14px 0 6px; }
-  .rt-editor h3 { font-size: 18px; margin: 12px 0 6px; }
-  .rt-editor:empty::before { content: "Write here… use the toolbar for formatting, links, images and video."; color: var(--faint); }
-  /* ============================================================
-     SCRAPPY OVERRIDE — raw HTML look. Loaded last so it wins.
-     ============================================================ */
-  :root { --accent: #0000ee; }
-  body {
-    font-family: "Times New Roman", Times, serif !important;
-    line-height: 1.4; color: #000; background: #fff;
-    -webkit-font-smoothing: auto;
-  }
-  .wrap { max-width: 760px; padding: 0 16px 80px; }
-
-  /* headings: plain bold serif, no letterspacing tricks */
-  h1, h2, h3, .tool-title, .cms-full-title, .cms-card-title, .card-name,
-  .detail h1.detail-name, .post-title, .post-full h1, .about h2, .tool-link, .rc-name {
-    font-family: "Times New Roman", Times, serif !important;
-    font-weight: bold !important; letter-spacing: 0 !important; text-transform: none !important;
-    text-shadow: none !important; line-height: 1.2;
-  }
-
-  /* links: default browser blue, underlined */
-  a, .tool-link, .cms-body a, .detail a { color: #0000ee !important; text-decoration: underline !important; }
-  a:visited { color: #551a8b !important; }
-
-  /* nav: plain inline text links */
-  header.app { border-bottom: 1px solid #000; padding: 10px 0; margin-bottom: 16px; }
-  #siteTitle { font-size: 22px; }
-  .navlink { font-size: 15px !important; font-weight: normal !important; color: #0000ee !important;
-    border: none !important; text-decoration: underline !important; padding: 0 !important; }
-  .navlink.active { color: #551a8b !important; font-weight: bold !important; }
-  .navlink.cta { color: #0000ee !important; }
-  #headerActions, .toolnav { gap: 12px !important; }
-
-  /* flatten everything: no rounded corners, no shadows, thin black borders */
-  .card, .related-card, .cms-card, .modal, .empty, .meta-pill, .tag, .chip,
-  .gallery-item, input, select, textarea, button, .rt-editor, .rt-toolbar,
-  .tag-mgr-row, .banner, .score, .photo-thumb, .cms-body img, .cms-body video,
-  .rt-embed iframe {
-    border-radius: 0 !important; box-shadow: none !important;
-  }
-  .card, .related-card, .cms-card, .empty, .tag-mgr-row {
-    border: 1px solid #000 !important; padding: 10px !important;
-    transform: none !important; background: #fff !important;
-  }
-  .card:hover, .related-card:hover, .cms-card:hover { box-shadow: none !important; border-color: #000 !important; }
-  .card::before, .card-accent { display: none !important; }
-
-  /* buttons: plain bordered serif */
-  button {
-    font-family: "Times New Roman", Times, serif !important;
-    font-size: 15px !important; font-weight: normal !important;
-    border: 1px solid #000 !important; background: #fff !important; color: #000 !important;
-    padding: 2px 8px !important; text-transform: none !important; letter-spacing: 0 !important;
-  }
-  button:hover { background: #eee !important; }
-  .btn-primary, .btn-add { background: #000 !important; color: #fff !important; }
-  .navlink { background: none !important; }
-
-  /* inputs */
-  input, select, textarea { border: 1px solid #000 !important; font-family: "Times New Roman", Times, serif !important; font-size: 15px !important; padding: 3px 6px !important; }
-
-  /* grids: tighter, denser */
-  #list { grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 10px; }
-  .cms-grid { grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 10px; }
-  .gallery-grid { gap: 6px; }
-
-  /* tags/chips: plain bracketed-feel pills */
-  .tag, .chip, .meta-pill { border: 1px solid #000 !important; padding: 0 5px !important; font-size: 13px !important; font-weight: normal !important; background: #fff !important; color: #000 !important; }
-
-  /* score: plain */
-  .score { font-weight: bold !important; }
-
-  /* section labels: plain italic, not uppercase chips */
-  .sec-label, .section-title { font-family: "Times New Roman", Times, serif !important; font-weight: bold !important;
-    text-transform: none !important; letter-spacing: 0 !important; color: #000 !important; font-style: italic;
-    border: none !important; background: none !important; padding: 0 !important; font-size: 15px !important; }
-
-  /* home tool list: plain */
-  .tool-link { font-size: 24px !important; text-decoration: underline !important; }
-  .tool-row { border-bottom: 1px solid #000; padding: 12px 0; }
-  .home-intro { font-style: italic; }
-
-  /* rich text editor: keep usable but flat */
-  .rt-toolbar { border: 1px solid #000 !important; background: #fff !important; }
-  .rt-toolbar button { border: 1px solid #000 !important; }
-  .rt-editor { border: 1px solid #000 !important; border-top: none !important; }
+  /* make images and media never overflow their container anywhere */
+  img, video, canvas, iframe, svg { max-width: 100%; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="app">
     <div class="title">
-      <h1><a href="#/" style="text-decoration:none" id="siteTitle">Proudley's Projects</a></h1>
+      <h1><a href="#/" style="text-decoration:none">The Farrow Bloody Mary Compendium</a></h1>
     </div>
     <nav id="headerActions">
-      <!-- Mary-tool nav (shown only inside the compendium) -->
-      <span class="toolnav" data-toolnav="marys" style="display:none">
-        <a class="navlink" id="navRecipes" href="#/marys">The good stuff</a>
-        <a class="navlink" id="navGallery" href="#/marys/gallery">Visual evidence</a>
-        <a class="navlink" id="navBlog" href="#/marys/blog">Written evidence</a>
-        <a class="navlink" id="navAbout" href="#/marys/about">About</a>
-        <button class="navlink" id="pantryBtn">What can I make?</button>
-        <button class="navlink" id="tagsBtn">Tags</button>
-        <button class="navlink cta" id="addBtn">+ Add recipe</button>
-      </span>
-      <!-- always available -->
-      <a class="navlink" id="navHome" href="#/">Home</a>
+      <a class="navlink" id="navRecipes" href="#/">The good stuff</a>
+      <a class="navlink" id="navGallery" href="#/gallery">Visual evidence</a>
+      <a class="navlink" id="navBlog" href="#/blog">Written evidence</a>
+      <a class="navlink" id="navAbout" href="#/about">About</a>
+      <button class="navlink" id="pantryBtn">What can I make?</button>
+      <button class="navlink" id="tagsBtn">Tags</button>
       <button class="navlink" id="accountBtn">Account</button>
+      <button class="navlink cta" id="addBtn">+ Add recipe</button>
     </nav>
   </header>
 
@@ -463,8 +385,8 @@
   <!-- AUTH GATE -->
   <div id="authView" style="display:none">
     <div class="detail" style="max-width:380px;margin:40px auto">
-      <h2 id="authTitle" style="font-family:'Times New Roman',sans-serif;margin:0 0 4px">Sign in</h2>
-      <p class="muted" style="margin:0 0 18px">Log in to reach the site.</p>
+      <h2 id="authTitle" style="font-family:'Archivo Black',sans-serif;margin:0 0 4px">Sign in</h2>
+      <p class="muted" style="margin:0 0 18px">Log in to reach your recipe box.</p>
       <div class="field">
         <label for="auth-email">Email</label>
         <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email" />
@@ -483,17 +405,6 @@
 
   <!-- APP (everything visible only when logged in) -->
   <div id="appView" style="display:none">
-
-  <!-- HOME VIEW -->
-  <div id="homeView" style="display:none"></div>
-
-  <!-- COLOUR TOOL VIEW -->
-  <div id="coloursView" style="display:none"></div>
-
-  <!-- INTERESTING / CMS VIEW -->
-  <div id="interestingView" style="display:none"></div>
-
-  <!-- ===== BLOODY MARY COMPENDIUM ===== -->
   <!-- LIST VIEW -->
   <div id="listView">
     <div class="toolbar">
@@ -673,81 +584,6 @@
     </div>
   </div>
 </div>
-
-<!-- CMS ENTRY EDITOR MODAL -->
-<div class="modal-bg" id="cmsModalBg">
-  <div class="modal wide" style="max-width:720px">
-    <h2 id="cmsModalTitle">New entry</h2>
-    <div class="field">
-      <label for="c-title">Title</label>
-      <input type="text" id="c-title" placeholder="Give it a title" />
-    </div>
-    <div class="field">
-      <label>Body</label>
-      <div class="rt-toolbar" id="rtToolbar">
-        <button type="button" data-cmd="bold" title="Bold"><b>B</b></button>
-        <button type="button" data-cmd="italic" title="Italic"><i>I</i></button>
-        <button type="button" data-cmd="underline" title="Underline"><u>U</u></button>
-        <span class="rt-sep"></span>
-        <button type="button" data-block="h2" title="Heading">H2</button>
-        <button type="button" data-block="h3" title="Subheading">H3</button>
-        <button type="button" data-cmd="insertUnorderedList" title="Bullet list">• List</button>
-        <button type="button" data-cmd="insertOrderedList" title="Numbered list">1. List</button>
-        <button type="button" data-block="blockquote" title="Quote">❝</button>
-        <span class="rt-sep"></span>
-        <button type="button" id="rtLink" title="Insert link">🔗 Link</button>
-        <button type="button" id="rtImage" title="Insert image">🖼 Image</button>
-        <button type="button" id="rtVideo" title="Insert video">🎬 Video</button>
-        <span class="rt-sep"></span>
-        <button type="button" data-cmd="removeFormat" title="Clear formatting">✕ Format</button>
-      </div>
-      <div id="c-body" class="rt-editor" contenteditable="true"></div>
-      <input type="file" id="rtImageFile" accept="image/*" style="display:none" />
-      <input type="file" id="rtVideoFile" accept="video/*" style="display:none" />
-      <p class="muted" id="rtStatus" style="margin:6px 0 0;min-height:18px"></p>
-    </div>
-    <div class="field">
-      <label>Tags</label>
-      <div id="c-tags" class="tags"></div>
-    </div>
-    <div class="form-actions">
-      <button class="btn-primary" id="cmsSaveBtn">Save entry</button>
-      <button id="cmsCancelBtn">Cancel</button>
-    </div>
-  </div>
-</div>
-
-<!-- CMS TAG MANAGER MODAL -->
-<div class="modal-bg" id="cmsTagModalBg">
-  <div class="modal wide">
-    <h2>Interesting · tags</h2>
-    <p class="muted" style="margin-top:-8px">Tags for organising entries. Separate from the bloody mary tags.</p>
-    <div id="cmsTagList" style="margin:16px 0"></div>
-    <div style="border-top:1px solid var(--line);padding-top:16px">
-      <label class="field" style="display:block">New tag</label>
-      <div class="tag-mgr-row">
-        <input type="text" id="cmsNewTagName" class="grow" placeholder="Tag name" />
-        <input type="color" id="cmsNewTagColor" value="#c0271a" />
-        <button class="btn-primary" id="cmsAddTagBtn" type="button">Add</button>
-      </div>
-    </div>
-    <div class="form-actions" style="margin-top:18px">
-      <button id="cmsTagDoneBtn">Done</button>
-    </div>
-  </div>
-</div>
-
-<!-- COLOUR PHOTO UPLOAD MODAL -->
-<div class="modal-bg" id="colModalBg">
-  <div class="modal wide">
-    <h2>Add a photo</h2>
-    <div id="colModalBody"></div>
-    <div class="form-actions" style="margin-top:16px">
-      <button class="btn-primary" id="colSaveBtn">Save photo</button>
-      <button id="colCancelBtn">Cancel</button>
-    </div>
-  </div>
-</div>
 <script>
 /* ============================================================
    CONFIG — paste your Supabase values here (see SETUP.md)
@@ -790,26 +626,6 @@ let formPhotoUrl = null;       // existing/uploaded photo url
 let formPhotoFile = null;      // pending file
 let activeFilterTag = null;    // tag id to filter list by
 let newTagEmoji = "🍅";
-
-/* ----- Interesting / CMS state ----- */
-const CMS_BUCKET = "cms-media";
-let cmsEntries = [];           // {id,title,body,created_at, tagIds[]}
-let cmsTags = [];              // {id,name,color}
-let cmsLoaded = false;
-let cmsEditingId = null;
-let cmsFormTagIds = [];
-let cmsSearch = "";
-let cmsActiveTags = [];        // tag ids to filter by (AND)
-let cmsNewTagColor = "#c0271a";
-
-/* ----- Colour tool state ----- */
-const COLOUR_BUCKET = "colour-photos";
-let colourPhotos = [];         // {id,url,hex,title,created_at}
-let coloursLoaded = false;
-let colourSearchHex = "#ff0000";
-let colourUploadFile = null;
-let colourUploadUrl = null;    // object URL for preview
-let colourPickedHex = null;
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -988,510 +804,25 @@ function showApp(){
 }
 
 /* ================= ROUTING ================= */
-const VIEWS = ["homeView","coloursView","interestingView","listView","detailView","galleryView","blogView","aboutView"];
+const VIEWS = ["listView","detailView","galleryView","blogView","aboutView"];
 function showOnly(id){ VIEWS.forEach(v => $(v).style.display = (v===id ? "" : "none")); }
 function setActiveNav(name){
-  ["navRecipes","navGallery","navBlog","navAbout","navHome"].forEach(n => $(n)?.classList.remove("active"));
+  ["navRecipes","navGallery","navBlog","navAbout"].forEach(n => $(n)?.classList.remove("active"));
   if (name) $(name)?.classList.add("active");
 }
-// show/hide the tool-specific nav cluster
-function setToolNav(tool){
-  document.querySelectorAll("[data-toolnav]").forEach(el => {
-    el.style.display = (el.dataset.toolnav === tool) ? "inline-flex" : "none";
-  });
-  // site title: plain "Farrow" on home, tool name inside a tool
-  const titles = { marys: "Proudley's Projects · Bloody Marys", colours: "Proudley's Projects · Colours", interesting: "Proudley's Projects · Interesting" };
-  $("siteTitle").textContent = tool && titles[tool] ? titles[tool] : "Proudley's Projects";
-}
-
 function route(){
   if (!session) return;
   const hash = location.hash || "#/";
   let m;
-  // ---- Bloody Mary compendium (prefixed #/marys) ----
-  if ((m = hash.match(/^#\/marys\/recipe\/(.+)$/))){ setToolNav("marys"); showOnly("detailView"); setActiveNav("navRecipes"); showDetail(m[1]); }
-  else if ((m = hash.match(/^#\/marys\/post\/(.+)$/))){ setToolNav("marys"); showOnly("blogView"); setActiveNav("navBlog"); showPost(m[1]); }
-  else if (hash === "#/marys/gallery"){ setToolNav("marys"); showOnly("galleryView"); setActiveNav("navGallery"); renderGallery(); }
-  else if (hash === "#/marys/blog"){ setToolNav("marys"); showOnly("blogView"); setActiveNav("navBlog"); renderBlog(); }
-  else if (hash === "#/marys/about"){ setToolNav("marys"); showOnly("aboutView"); setActiveNav("navAbout"); renderAbout(); }
-  else if (hash === "#/marys" || hash === "#/marys/"){ setToolNav("marys"); showOnly("listView"); setActiveNav("navRecipes"); renderList(); }
-  // ---- Colour tool ----
-  else if (hash === "#/colours" || hash.startsWith("#/colours/")){ setToolNav("colours"); showOnly("coloursView"); setActiveNav(null); renderColours(); }
-  // ---- Interesting / CMS ----
-  else if ((m = hash.match(/^#\/interesting\/(.+)$/))){ setToolNav("interesting"); showOnly("interestingView"); setActiveNav(null); cmsEntryRoute(m[1]); }
-  else if (hash === "#/interesting" || hash === "#/interesting/"){ setToolNav("interesting"); showOnly("interestingView"); setActiveNav(null); renderInteresting(); }
-  // ---- Home ----
-  else { setToolNav(null); showOnly("homeView"); setActiveNav("navHome"); renderHome(); }
+  if ((m = hash.match(/^#\/recipe\/(.+)$/))){ showOnly("detailView"); setActiveNav("navRecipes"); showDetail(m[1]); }
+  else if ((m = hash.match(/^#\/post\/(.+)$/))){ showOnly("blogView"); setActiveNav("navBlog"); showPost(m[1]); }
+  else if (hash === "#/gallery"){ showOnly("galleryView"); setActiveNav("navGallery"); renderGallery(); }
+  else if (hash === "#/blog"){ showOnly("blogView"); setActiveNav("navBlog"); renderBlog(); }
+  else if (hash === "#/about"){ showOnly("aboutView"); setActiveNav("navAbout"); renderAbout(); }
+  else { showOnly("listView"); setActiveNav("navRecipes"); renderList(); }
   window.scrollTo(0,0);
 }
 window.addEventListener("hashchange", route);
-
-/* ================= HOME ================= */
-function renderHome(){
-  $("homeView").innerHTML = `
-    <div class="home">
-      <p class="home-intro">A small set of tools.</p>
-      <ol class="tool-list">
-        <li class="tool-row">
-          <a href="#/marys" class="tool-link">Bloody Mary Compendium</a>
-          <span class="tool-desc">Recipes, rankings, photos and notes.</span>
-        </li>
-        <li class="tool-row">
-          <a href="#/colours" class="tool-link">Photos by Colour</a>
-          <span class="tool-desc">Upload a photo, pick its dominant colour, search the library by colour.</span>
-        </li>
-        <li class="tool-row">
-          <a href="#/interesting" class="tool-link">Interesting</a>
-          <span class="tool-desc">A tagged collection of links, writing, images and video.</span>
-        </li>
-      </ol>
-    </div>`;
-}
-
-/* ================= COLOUR TOOL (scaffold) ================= */
-/* ================= PHOTOS BY COLOUR ================= */
-async function loadColours(){
-  const rows = await api("GET","colour_photos","?select=*&order=created_at.desc");
-  colourPhotos = rows || [];
-  coloursLoaded = true;
-}
-
-// hex <-> rgb + distance for search ranking
-function hexToRgb(h){ h=(h||"").replace("#",""); if(h.length===3) h=h.split("").map(c=>c+c).join(""); return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)]; }
-function colourDist(a,b){ const x=hexToRgb(a), y=hexToRgb(b); return Math.sqrt((x[0]-y[0])**2 + (x[1]-y[1])**2 + (x[2]-y[2])**2); }
-
-async function renderColours(){
-  const view = $("coloursView");
-  if (!coloursLoaded){
-    view.innerHTML = `<div class="tool-page"><h2 class="tool-title">Photos by Colour</h2><p>Loading…</p></div>`;
-    try { await loadColours(); }
-    catch(e){
-      view.innerHTML = `<div class="tool-page"><h2 class="tool-title">Photos by Colour</h2><div class="banner err show">Couldn't load. The colour tables/bucket may not exist yet — see COLOUR_SETUP.md. (${esc(e.message)})</div></div>`;
-      return;
-    }
-  }
-  renderColoursPage();
-}
-
-function renderColoursPage(){
-  const view = $("coloursView");
-  // rank library by closeness to the search colour
-  const ranked = colourPhotos.map(p => ({...p, d: colourDist(colourSearchHex, p.hex)}))
-                             .sort((a,b) => a.d - b.d);
-
-  view.innerHTML = `
-    <div class="tool-page">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:6px">
-        <h2 class="tool-title" style="margin:0">Photos by Colour</h2>
-        <button class="btn-primary" id="colUploadBtn">+ Add photo</button>
-      </div>
-      <p class="home-intro" style="margin:0 0 18px">Every photo is filed by one colour. Pick a colour to find the closest matches.</p>
-
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap">
-        <label for="colSearch"><b>Search by colour:</b></label>
-        <input type="color" id="colSearch" value="${colourSearchHex}" style="width:54px;height:34px">
-        <span>${colourSearchHex}</span>
-        <span style="margin-left:auto" class="home-intro">${colourPhotos.length} photo${colourPhotos.length===1?"":"s"}</span>
-      </div>
-
-      <div id="colGrid"></div>
-    </div>`;
-
-  const grid = $("colGrid");
-  if (!colourPhotos.length){
-    grid.innerHTML = `<div class="empty"><p>No photos yet — add the first one.</p></div>`;
-  } else {
-    grid.innerHTML = `<div class="gallery-grid">${ranked.map(p => `
-      <div class="gallery-item" style="position:relative" title="${esc(p.hex)} — ${esc(p.title||"")}" onclick="openLightbox('${esc(p.url)}')">
-        <img src="${esc(p.url)}" alt="${esc(p.title||"")}" loading="lazy">
-        <span style="position:absolute;left:0;bottom:0;width:100%;height:16px;background:${esc(p.hex)};border-top:1px solid #000"></span>
-      </div>`).join("")}</div>`;
-  }
-
-  $("colUploadBtn").onclick = openColourUpload;
-  $("colSearch").oninput = (e) => { colourSearchHex = e.target.value; renderColoursPage(); };
-}
-
-/* ---------- upload + pixel pick ---------- */
-function openColourUpload(){
-  colourUploadFile = null; colourUploadUrl = null; colourPickedHex = null;
-  $("colModalBody").innerHTML = `
-    <div class="field">
-      <label>Choose a photo</label>
-      <input type="file" id="colFile" accept="image/*">
-    </div>
-    <div id="colPickArea"></div>
-    <div class="field" style="margin-top:10px">
-      <label for="colTitle">Title (optional)</label>
-      <input type="text" id="colTitle" placeholder="What is it?">
-    </div>
-  `;
-  $("colModalBg").classList.add("show");
-  $("colFile").onchange = (e) => {
-    const f = e.target.files[0]; if (!f) return;
-    colourUploadFile = f;
-    colourUploadUrl = URL.createObjectURL(f);
-    colourPickedHex = null;
-    renderColourPickArea();
-  };
-  renderColourPickArea();
-}
-function closeColourUpload(){ $("colModalBg").classList.remove("show"); }
-
-function renderColourPickArea(){
-  const area = $("colPickArea");
-  if (!colourUploadUrl){ area.innerHTML = `<p class="home-intro">Pick a photo, then click on it to sample its dominant colour.</p>`; return; }
-  area.innerHTML = `
-    <p class="home-intro" style="margin:4px 0">Click the image to sample its dominant colour:</p>
-    <canvas id="colCanvas" style="max-width:100%;border:1px solid #000;cursor:crosshair;display:block"></canvas>
-    <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
-      <span>Picked:</span>
-      <span id="colSwatch" style="display:inline-block;width:28px;height:20px;border:1px solid #000;background:${colourPickedHex||'transparent'}"></span>
-      <span id="colHexLabel">${colourPickedHex||'(none yet)'}</span>
-    </div>`;
-  const canvas = $("colCanvas");
-  const ctx = canvas.getContext("2d", { willReadFrequently: true });
-  const img = new Image();
-  img.onload = () => {
-    const maxW = 460; const scale = Math.min(1, maxW/img.naturalWidth);
-    canvas.width = Math.round(img.naturalWidth*scale);
-    canvas.height = Math.round(img.naturalHeight*scale);
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  };
-  img.src = colourUploadUrl;
-  canvas.onclick = (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const x = Math.round((e.clientX - rect.left) * (canvas.width/rect.width));
-    const y = Math.round((e.clientY - rect.top) * (canvas.height/rect.height));
-    const d = ctx.getImageData(x, y, 1, 1).data;
-    colourPickedHex = "#" + [d[0],d[1],d[2]].map(v => v.toString(16).padStart(2,"0")).join("");
-    $("colSwatch").style.background = colourPickedHex;
-    $("colHexLabel").textContent = colourPickedHex;
-  };
-}
-
-async function saveColourPhoto(){
-  if (!colourUploadFile){ showErr("Choose a photo first."); return; }
-  if (!colourPickedHex){ showErr("Click the image to pick its colour first."); return; }
-  const btn = $("colSaveBtn"); const orig = btn.textContent;
-  btn.disabled = true; btn.innerHTML = `<span class="spinner"></span> Saving`;
-  try {
-    const url = await uploadMedia(colourUploadFile, COLOUR_BUCKET);
-    const title = $("colTitle").value.trim() || null;
-    await api("POST","colour_photos","", { url, hex: colourPickedHex, title });
-    closeColourUpload();
-    await loadColours();
-    renderColoursPage();
-    showInfo("Photo added.");
-  } catch(e){
-    showErr("Couldn't save. " + e.message);
-  } finally {
-    btn.disabled = false; btn.textContent = orig;
-  }
-}
-
-
-/* ================= INTERESTING / CMS ================= */
-async function loadCMS(){
-  const [ent, tg] = await Promise.all([
-    api("GET","cms_entries","?select=*,cms_entry_tags(tag_id)&order=created_at.desc"),
-    api("GET","cms_tags","?select=*&order=name.asc")
-  ]);
-  cmsEntries = (ent||[]).map(e => ({...e, tagIds: (e.cms_entry_tags||[]).map(x=>x.tag_id)}));
-  cmsTags = tg||[];
-  cmsLoaded = true;
-}
-
-function cmsTagById(id){ return cmsTags.find(t => String(t.id)===String(id)); }
-function cmsChip(tag, extraClass="", extraAttr=""){
-  if (!tag) return "";
-  return `<span class="chip ${extraClass}" ${extraAttr} style="background:${tag.color};color:${textOn(tag.color)};border-color:var(--line-2)">${esc(tag.name)}</span>`;
-}
-function stripHtml(html){ const d=document.createElement("div"); d.innerHTML=html||""; return (d.textContent||"").replace(/\s+/g," ").trim(); }
-
-async function renderInteresting(){
-  const view = $("interestingView");
-  if (!cmsLoaded){
-    view.innerHTML = `<div class="tool-page"><h2 class="tool-title">Interesting</h2><p class="muted">Loading…</p></div>`;
-    try { await loadCMS(); }
-    catch(e){
-      view.innerHTML = `<div class="tool-page"><h2 class="tool-title">Interesting</h2><div class="banner err show">Couldn't load. If this is the first run, the CMS tables may not exist yet — see SETUP.md. (${esc(e.message)})</div></div>`;
-      return;
-    }
-  }
-  renderCMSList();
-}
-
-function renderCMSList(){
-  const view = $("interestingView");
-  const q = cmsSearch.trim().toLowerCase();
-  let entries = cmsEntries.slice();
-  if (cmsActiveTags.length){
-    entries = entries.filter(e => cmsActiveTags.every(t => (e.tagIds||[]).map(String).includes(String(t))));
-  }
-  if (q){
-    entries = entries.filter(e =>
-      (e.title||"").toLowerCase().includes(q) ||
-      stripHtml(e.body).toLowerCase().includes(q));
-  }
-
-  const tagFilter = cmsTags.length ? `<div class="tags" style="margin:0 0 18px">
-      <span class="muted" style="align-self:center;margin-right:4px">Filter:</span>
-      ${cmsTags.map(t => cmsChip(t, "pick " + (cmsActiveTags.map(String).includes(String(t.id))?"on":""), `data-cmsfilter="${t.id}"`)).join("")}
-      ${cmsActiveTags.length?`<button class="btn-ghost" id="cmsClearFilter" style="padding:3px 10px;font-size:11px">clear ✕</button>`:""}
-    </div>` : "";
-
-  view.innerHTML = `
-    <div class="tool-page">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px">
-        <h2 class="tool-title" style="margin:0">Interesting</h2>
-        <div style="display:flex;gap:10px">
-          <button class="btn-ghost" id="cmsTagsBtn">Tags</button>
-          <button class="btn-primary" id="cmsNewBtn">+ New entry</button>
-        </div>
-      </div>
-      <input type="search" id="cmsSearch" class="search" style="max-width:none;width:100%;margin-bottom:16px" placeholder="Search entries…" value="${esc(cmsSearch)}" />
-      ${tagFilter}
-      <div id="cmsEntries"></div>
-    </div>`;
-
-  const box = $("cmsEntries");
-  if (!cmsEntries.length){
-    box.innerHTML = `<div class="empty"><p>Nothing yet — add your first entry.</p></div>`;
-  } else if (!entries.length){
-    box.innerHTML = `<div class="empty"><p>No entries match.</p></div>`;
-  } else {
-    box.innerHTML = `<div class="cms-grid">${entries.map(e => {
-      const chips = (e.tagIds||[]).map(id => cmsChip(cmsTagById(id))).join("");
-      const excerpt = esc(stripHtml(e.body).slice(0,160));
-      return `<button class="cms-card" onclick="location.hash='#/interesting/${e.id}'">
-        <p class="cms-card-title">${esc(e.title||"Untitled")}</p>
-        ${chips?`<div class="tags" style="margin:0 0 8px">${chips}</div>`:""}
-        <p class="cms-card-excerpt">${excerpt}${excerpt.length>=160?"…":""}</p>
-      </button>`;
-    }).join("")}</div>`;
-  }
-
-  // wire
-  const s = $("cmsSearch");
-  s.oninput = (ev) => { cmsSearch = ev.target.value; const pos = ev.target.selectionStart; renderCMSList(); const ns=$("cmsSearch"); ns.focus(); try{ns.setSelectionRange(pos,pos);}catch{} };
-  $("cmsNewBtn").onclick = () => openCmsEditor();
-  $("cmsTagsBtn").onclick = openCmsTagModal;
-  view.querySelectorAll("[data-cmsfilter]").forEach(c => c.onclick = () => {
-    const id = c.dataset.cmsfilter;
-    if (cmsActiveTags.map(String).includes(String(id))) cmsActiveTags = cmsActiveTags.filter(x=>String(x)!==String(id));
-    else cmsActiveTags.push(cmsTagById(id).id);
-    renderCMSList();
-  });
-  const cf = $("cmsClearFilter"); if (cf) cf.onclick = () => { cmsActiveTags=[]; renderCMSList(); };
-}
-
-async function cmsEntryRoute(id){
-  if (!cmsLoaded){
-    $("interestingView").innerHTML = `<div class="tool-page"><p class="muted">Loading…</p></div>`;
-    try { await loadCMS(); } catch(e){ $("interestingView").innerHTML = `<div class="tool-page"><div class="banner err show">Couldn't load. ${esc(e.message)}</div></div>`; return; }
-  }
-  showCmsEntry(id);
-}
-
-function showCmsEntry(id){
-  const e = cmsEntries.find(x => String(x.id)===String(id));
-  const view = $("interestingView");
-  if (!e){
-    view.innerHTML = `<div class="tool-page"><button class="back-btn" onclick="location.hash='#/interesting'">← All entries</button><div class="empty"><p>Entry not found</p></div></div>`;
-    return;
-  }
-  const chips = (e.tagIds||[]).map(id => cmsChip(cmsTagById(id))).join("");
-  view.innerHTML = `
-    <div class="tool-page">
-      <button class="back-btn" onclick="location.hash='#/interesting'">← All entries</button>
-      <article class="cms-full">
-        <h1 class="cms-full-title">${esc(e.title||"Untitled")}</h1>
-        <p class="post-meta">${esc(formatDate((e.created_at||"").slice(0,10)))}</p>
-        ${chips?`<div class="tags" style="margin:10px 0 20px">${chips}</div>`:""}
-        <div class="cms-body">${sanitizeCmsHtml(e.body||"")}</div>
-        <div class="card-foot" style="margin-top:28px">
-          <button class="btn-ghost" onclick="openCmsEditor('${e.id}')">✎ Edit</button>
-          <button class="btn-del" onclick="delCmsEntry('${e.id}')">✕ Delete</button>
-        </div>
-      </article>
-    </div>`;
-}
-
-/* very small allowlist sanitiser for stored rich text */
-function sanitizeCmsHtml(html){
-  const tpl = document.createElement("template");
-  tpl.innerHTML = html;
-  const ALLOWED = new Set(["P","BR","B","STRONG","I","EM","U","H2","H3","UL","OL","LI","A","IMG","BLOCKQUOTE","DIV","IFRAME","VIDEO","SOURCE","FIGURE"]);
-  (function walk(node){
-    [...node.childNodes].forEach(n => {
-      if (n.nodeType === 1){
-        if (!ALLOWED.has(n.tagName)){
-          // unwrap disallowed element, keeping its text
-          const txt = document.createTextNode(n.textContent);
-          n.replaceWith(txt);
-          return;
-        }
-        // strip event handlers & javascript: urls
-        [...n.attributes].forEach(a => {
-          const name = a.name.toLowerCase();
-          if (name.startsWith("on")) n.removeAttribute(a.name);
-          if ((name==="href"||name==="src") && /^\s*javascript:/i.test(a.value)) n.removeAttribute(a.name);
-        });
-        if (n.tagName==="A"){ n.setAttribute("target","_blank"); n.setAttribute("rel","noopener noreferrer"); }
-        if (n.tagName==="IFRAME"){
-          const src = n.getAttribute("src")||"";
-          if (!/^https:\/\/(www\.)?(youtube\.com|youtube-nocookie\.com|player\.vimeo\.com)\//i.test(src)){ n.replaceWith(document.createTextNode("")); return; }
-          n.setAttribute("allowfullscreen","");
-          n.setAttribute("loading","lazy");
-        }
-        walk(n);
-      } else if (n.nodeType === 8){ n.remove(); } // comments
-    });
-  })(tpl.content);
-  return tpl.innerHTML;
-}
-
-async function delCmsEntry(id){
-  if (!confirm("Delete this entry?")) return;
-  try {
-    await api("DELETE","cms_entry_tags",`?entry_id=eq.${id}`);
-    await api("DELETE","cms_entries",`?id=eq.${id}`);
-    cmsEntries = cmsEntries.filter(e => String(e.id)!==String(id));
-    location.hash = "#/interesting";
-    showInfo("Deleted.");
-  } catch(e){ showErr("Couldn't delete entry. " + e.message); }
-}
-
-/* ---------- CMS editor ---------- */
-function renderCmsFormTags(){
-  const box = $("c-tags");
-  if (!cmsTags.length){ box.innerHTML = `<span class="muted">No tags yet — add some via the Tags button on the list.</span>`; return; }
-  box.innerHTML = cmsTags.map(t => {
-    const on = cmsFormTagIds.map(String).includes(String(t.id));
-    return cmsChip(t, "pick " + (on?"on":""), `data-ctag="${t.id}"`);
-  }).join("");
-  box.querySelectorAll("[data-ctag]").forEach(c => c.onclick = () => {
-    const id = cmsTagById(c.dataset.ctag).id;
-    if (cmsFormTagIds.map(String).includes(String(id))) cmsFormTagIds = cmsFormTagIds.filter(x=>String(x)!==String(id));
-    else cmsFormTagIds.push(id);
-    renderCmsFormTags();
-  });
-}
-function openCmsEditor(id){
-  cmsEditingId = id || null;
-  if (id){
-    const e = cmsEntries.find(x => String(x.id)===String(id));
-    $("cmsModalTitle").textContent = "Edit entry";
-    $("c-title").value = e.title||"";
-    $("c-body").innerHTML = sanitizeCmsHtml(e.body||"");
-    cmsFormTagIds = (e.tagIds||[]).slice();
-  } else {
-    $("cmsModalTitle").textContent = "New entry";
-    $("c-title").value = "";
-    $("c-body").innerHTML = "";
-    cmsFormTagIds = [];
-  }
-  $("rtStatus").textContent = "";
-  renderCmsFormTags();
-  $("cmsModalBg").classList.add("show");
-}
-function closeCmsEditor(){ $("cmsModalBg").classList.remove("show"); cmsEditingId = null; }
-
-async function saveCmsEntry(){
-  const title = $("c-title").value.trim();
-  if (!title){ $("c-title").focus(); return; }
-  const body = sanitizeCmsHtml($("c-body").innerHTML);
-  const btn = $("cmsSaveBtn"); const orig = btn.innerHTML;
-  btn.disabled = true; btn.innerHTML = `<span class="spinner"></span> Saving`;
-  try {
-    let entryId = cmsEditingId;
-    if (cmsEditingId){
-      await api("PATCH","cms_entries",`?id=eq.${cmsEditingId}`, { title, body });
-    } else {
-      const created = await api("POST","cms_entries","", { title, body }, { "Prefer":"return=representation" });
-      entryId = created[0].id;
-    }
-    await api("DELETE","cms_entry_tags",`?entry_id=eq.${entryId}`);
-    if (cmsFormTagIds.length){
-      await api("POST","cms_entry_tags","", cmsFormTagIds.map(tid => ({entry_id: entryId, tag_id: tid})));
-    }
-    closeCmsEditor();
-    await loadCMS();
-    location.hash = "#/interesting/" + entryId;
-    if ((location.hash||"").startsWith("#/interesting/")) showCmsEntry(entryId);
-    showInfo("Saved.");
-  } catch(e){
-    showErr("Couldn't save entry. " + e.message);
-  } finally {
-    btn.disabled = false; btn.innerHTML = orig;
-  }
-}
-
-/* ---------- rich text commands ---------- */
-function rtExec(cmd, val=null){ $("c-body").focus(); document.execCommand(cmd, false, val); }
-function rtBlock(tag){
-  $("c-body").focus();
-  // toggle: if already in this block, revert to P
-  document.execCommand("formatBlock", false, tag);
-}
-function videoEmbedHtml(url){
-  url = url.trim();
-  let m;
-  if ((m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})/))){
-    return `<div class="rt-embed"><iframe src="https://www.youtube.com/embed/${m[1]}" allowfullscreen loading="lazy" frameborder="0"></iframe></div>`;
-  }
-  if ((m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/))){
-    return `<div class="rt-embed"><iframe src="https://player.vimeo.com/video/${m[1]}" allowfullscreen loading="lazy" frameborder="0"></iframe></div>`;
-  }
-  return null;
-}
-function rtInsertHtml(html){
-  $("c-body").focus();
-  document.execCommand("insertHTML", false, html + "<p><br></p>");
-}
-
-/* ---------- CMS tag manager ---------- */
-function openCmsTagModal(){ renderCmsTagList(); $("cmsTagModalBg").classList.add("show"); }
-function closeCmsTagModal(){ $("cmsTagModalBg").classList.remove("show"); }
-function renderCmsTagList(){
-  const box = $("cmsTagList");
-  if (!cmsTags.length){ box.innerHTML = `<p class="muted">No tags yet.</p>`; return; }
-  box.innerHTML = cmsTags.map(t => `
-    <div class="tag-mgr-row">
-      <input type="text" class="grow" value="${esc(t.name)}" data-cname="${t.id}" />
-      <input type="color" value="${t.color||'#cccccc'}" data-ccolor="${t.id}" />
-      <button class="btn-ghost" type="button" data-csave="${t.id}">Save</button>
-      <button class="btn-del" type="button" data-cdel="${t.id}">✕</button>
-    </div>`).join("");
-  box.querySelectorAll("[data-csave]").forEach(b => b.onclick = async () => {
-    const id = b.dataset.csave;
-    const name = box.querySelector(`[data-cname="${id}"]`).value.trim();
-    const color = box.querySelector(`[data-ccolor="${id}"]`).value;
-    if (!name) return;
-    try { await api("PATCH","cms_tags",`?id=eq.${id}`,{name,color}); await loadCMS(); renderCmsTagList(); showInfo("Tag updated."); }
-    catch(e){ showErr("Couldn't update tag. "+e.message); }
-  });
-  box.querySelectorAll("[data-cdel]").forEach(b => b.onclick = async () => {
-    const id = b.dataset.cdel;
-    if (!confirm("Delete this tag? It will be removed from all entries.")) return;
-    try { await api("DELETE","cms_entry_tags",`?tag_id=eq.${id}`); await api("DELETE","cms_tags",`?id=eq.${id}`); await loadCMS(); renderCmsTagList(); showInfo("Tag deleted."); }
-    catch(e){ showErr("Couldn't delete tag. "+e.message); }
-  });
-}
-async function addCmsTag(){
-  const name = $("cmsNewTagName").value.trim();
-  if (!name){ $("cmsNewTagName").focus(); return; }
-  const color = $("cmsNewTagColor").value;
-  try {
-    await api("POST","cms_tags","", {name, color}, {"Prefer":"return=representation"});
-    $("cmsNewTagName").value="";
-    await loadCMS(); renderCmsTagList(); showInfo("Tag added.");
-  } catch(e){ showErr("Couldn't add tag. "+e.message); }
-}
-
-
-
 
 /* ================= LIST VIEW ================= */
 function renderFilterTags(){
@@ -1553,7 +884,7 @@ function renderList(){
       ${cardAccent(idx)}
       <div class="card-head">
         <div>
-          <p class="card-name"><a href="#/marys/recipe/${r.id}" style="color:inherit;text-decoration:none">${esc(r.name||"Untitled")}</a></p>
+          <p class="card-name"><a href="#/recipe/${r.id}" style="color:inherit;text-decoration:none">${esc(r.name||"Untitled")}</a></p>
           ${r.source?`<p class="card-source">${esc(r.source)}</p>`:""}
         </div>
         ${scoreBadge(r.rating)}
@@ -1569,7 +900,7 @@ function renderList(){
     </div>`;
   }).join("");
 
-  list.querySelectorAll("[data-open]").forEach(b => b.onclick = () => location.hash = `#/marys/recipe/${b.dataset.open}`);
+  list.querySelectorAll("[data-open]").forEach(b => b.onclick = () => location.hash = `#/recipe/${b.dataset.open}`);
   list.querySelectorAll("[data-del]").forEach(b => b.onclick = () => delRecipe(b.dataset.del));
   list.querySelectorAll("[data-edit]").forEach(b => b.onclick = () => startEdit(b.dataset.edit));
 }
@@ -1594,14 +925,14 @@ function showDetail(id){
   const r = recipes.find(x => String(x.id)===String(id));
   const view = $("detailView");
   if (!r){
-    view.innerHTML = `<button class="back-btn" onclick="location.hash='#/marys'">← Back</button>
+    view.innerHTML = `<button class="back-btn" onclick="location.hash='#/'">← Back</button>
       <div class="empty"><div class="big">${GLASS_SVG}</div><p>Recipe not found</p></div>`;
     return;
   }
   const ing = (r.ingredients||"").split("\n").map(s=>s.trim()).filter(Boolean);
   const ingHTML = ing.length ? `<div class="section-title">Ingredients</div><ul>${ing.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>` : "";
   const steps = recipeSteps(r);
-  const stepsHTML = steps.length ? `<div class="section-title">Method</div><ol style="padding-left:0;list-style:none">${steps.map((s,i)=>`<li style="display:flex;gap:12px;margin-bottom:14px;align-items:flex-start"><span style="font-family:'Times New Roman',sans-serif;font-size:14px;color:var(--accent);min-width:22px">${i+1}</span><span style="padding-top:1px">${esc(s)}</span></li>`).join("")}</ol>` : "";
+  const stepsHTML = steps.length ? `<div class="section-title">Method</div><ol style="padding-left:0;list-style:none">${steps.map((s,i)=>`<li style="display:flex;gap:12px;margin-bottom:14px;align-items:flex-start"><span style="font-family:'Archivo Black',sans-serif;font-size:14px;color:var(--accent);min-width:22px">${i+1}</span><span style="padding-top:1px">${esc(s)}</span></li>`).join("")}</ol>` : "";
   const notesHTML = r.notes ? `<div class="section-title">Notes</div><p class="notes">${esc(r.notes)}</p>` : "";
   const spice = r.spice ? `<span class="tag" style="${SPICE_STYLE[r.spice]||''}">${spiceIcon(r.spice)} ${esc(r.spice)}</span>` : "";
   const tagChips = (r.tagIds||[]).map(tid => chipHTML(tagById(tid))).join("");
@@ -1616,7 +947,7 @@ function showDetail(id){
     <div class="section-title">You might also like</div>
     <div class="related-grid">
       ${related.map(rr => `
-        <button class="related-card" onclick="location.hash='#/marys/recipe/${rr.id}'">
+        <button class="related-card" onclick="location.hash='#/recipe/${rr.id}'">
           ${rr.photo_url?`<img src="${esc(rr.photo_url)}" alt="">`:""}
           <p class="rc-name">${esc(rr.name)}</p>
           <div>${scoreBadge(rr.rating)}</div>
@@ -1625,7 +956,7 @@ function showDetail(id){
     `<div class="section-title">You might also like</div><p class="muted">Add some shared tags to see related recipes.</p>`;
 
   view.innerHTML = `
-    <button class="back-btn" onclick="location.hash='#/marys'">← All recipes</button>
+    <button class="back-btn" onclick="location.hash='#/'">← All recipes</button>
     <div class="detail">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
         <div>
@@ -1678,13 +1009,13 @@ function postExcerpt(body){
 }
 function renderBlog(){
   const view = $("blogView");
-  const newBtn = `<div style="display:flex;justify-content:space-between;align-items:center;max-width:720px;margin:0 auto 8px"><h2 style="font-family:'Times New Roman',sans-serif;margin:0">Blog</h2><button class="btn-primary" onclick="openPostEditor()">+ New post</button></div>`;
+  const newBtn = `<div style="display:flex;justify-content:space-between;align-items:center;max-width:720px;margin:0 auto 8px"><h2 style="font-family:'Archivo Black',sans-serif;margin:0">Blog</h2><button class="btn-primary" onclick="openPostEditor()">+ New post</button></div>`;
   if (!posts.length){
     view.innerHTML = newBtn + `<div class="blog-list"><div class="empty"><p>No posts yet.</p></div></div>`;
     return;
   }
   view.innerHTML = newBtn + `<div class="blog-list">${posts.map(p => `
-    <div class="post-item" onclick="location.hash='#/marys/post/${p.id}'">
+    <div class="post-item" onclick="location.hash='#/post/${p.id}'">
       <h3 class="post-title">${esc(p.title||"Untitled")}</h3>
       <p class="post-meta">${esc(formatDate(p.date))}${p.author?` · ${esc(p.author)}`:""}</p>
       <p class="post-excerpt">${esc(postExcerpt(p.body))}</p>
@@ -1694,11 +1025,11 @@ function showPost(id){
   const p = posts.find(x => String(x.id)===String(id));
   const view = $("blogView");
   if (!p){
-    view.innerHTML = `<button class="back-btn" onclick="location.hash='#/marys/blog'">← All posts</button><div class="empty"><p>Post not found</p></div>`;
+    view.innerHTML = `<button class="back-btn" onclick="location.hash='#/blog'">← All posts</button><div class="empty"><p>Post not found</p></div>`;
     return;
   }
   view.innerHTML = `
-    <button class="back-btn" onclick="location.hash='#/marys/blog'">← All posts</button>
+    <button class="back-btn" onclick="location.hash='#/blog'">← All posts</button>
     <article class="post-full">
       <h1>${esc(p.title||"Untitled")}</h1>
       <p class="post-meta">${esc(formatDate(p.date))}${p.author?` · ${esc(p.author)}`:""}</p>
@@ -1750,8 +1081,8 @@ async function savePost(){
     const po = await api("GET","posts","?select=*&order=date.desc");
     posts = po||[];
     if (wasEditing && (location.hash||"").includes("/post/")) showPost(wasEditing);
-    else location.hash = "#/marys/blog";
-    if (location.hash === "#/marys/blog") renderBlog();
+    else location.hash = "#/blog";
+    if (location.hash === "#/blog") renderBlog();
     showInfo("Saved.");
   } catch(e){
     showErr("Couldn't save post. " + e.message);
@@ -1764,7 +1095,7 @@ async function delPost(id){
   try {
     await api("DELETE","posts",`?id=eq.${id}`);
     posts = posts.filter(p => String(p.id)!==String(id));
-    location.hash = "#/marys/blog"; renderBlog();
+    location.hash = "#/blog"; renderBlog();
     showInfo("Deleted.");
   } catch(e){
     showErr("Couldn't delete post. " + e.message);
@@ -1869,19 +1200,6 @@ async function uploadPhoto(file){
   return `${cleanUrl()}/storage/v1/object/public/${PHOTO_BUCKET}/${path}`;
 }
 
-// general media upload (images + video) for the CMS, authenticated with the session token
-async function uploadMedia(file, bucket){
-  const ext = (file.name.split(".").pop()||"bin").toLowerCase();
-  const path = `${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
-  const res = await fetch(`${cleanUrl()}/storage/v1/object/${bucket}/${path}`, {
-    method: "POST",
-    headers: { "apikey": SUPABASE_ANON_KEY, "Authorization": `Bearer ${authToken()}`, "Content-Type": file.type || "application/octet-stream" },
-    body: file
-  });
-  if (!res.ok) throw new Error(`Upload failed: ${res.status} ${await res.text()}`);
-  return `${cleanUrl()}/storage/v1/object/public/${bucket}/${path}`;
-}
-
 /* ---------- Save recipe + its tag links ---------- */
 async function saveRecipe(){
   const name = $("f-name").value.trim();
@@ -1931,7 +1249,7 @@ async function delRecipe(id){
   try {
     await api("DELETE","recipe_tags",`?recipe_id=eq.${id}`);
     await api("DELETE","recipes",`?id=eq.${id}`);
-    if ((location.hash||"").includes("/recipe/")) location.hash = "#/marys";
+    if ((location.hash||"").includes("/recipe/")) location.hash = "#/";
     await loadAll();
     showInfo("Deleted.");
   } catch (e){
@@ -2055,7 +1373,7 @@ function renderPantryResults(){
     const badge = x.missing===0
       ? `<span class="meta-pill" style="background:#f1f8f2;color:#256b30;border-color:#c8e4cc">✓ You can make this</span>`
       : `<span class="meta-pill" style="background:#fafafa">Have ${x.have}/${x.total} · missing ${x.missingList.map(esc).join(", ")}</span>`;
-    return `<button class="related-card" style="width:100%;margin-bottom:10px" onclick="closePantry();location.hash='#/marys/recipe/${x.r.id}'">
+    return `<button class="related-card" style="width:100%;margin-bottom:10px" onclick="closePantry();location.hash='#/recipe/${x.r.id}'">
       <p class="rc-name">${esc(x.r.name)}</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${scoreBadge(x.r.rating)} ${badge}</div>
     </button>`;
@@ -2151,56 +1469,8 @@ $("tagModalBg").onclick = (e) => { if (e.target === $("tagModalBg")) closeTagMod
 $("pantryModalBg").onclick = (e) => { if (e.target === $("pantryModalBg")) closePantry(); };
 $("accountModalBg").onclick = (e) => { if (e.target === $("accountModalBg")) closeAccount(); };
 $("postModalBg").onclick = (e) => { if (e.target === $("postModalBg")) closePostEditor(); };
-
-/* ----- CMS wiring ----- */
-$("cmsSaveBtn").onclick = saveCmsEntry;
-$("cmsCancelBtn").onclick = closeCmsEditor;
-$("cmsModalBg").onclick = (e) => { if (e.target === $("cmsModalBg")) closeCmsEditor(); };
-$("cmsTagDoneBtn").onclick = closeCmsTagModal;
-$("cmsAddTagBtn").onclick = addCmsTag;
-$("cmsTagModalBg").onclick = (e) => { if (e.target === $("cmsTagModalBg")) closeCmsTagModal(); };
-
-/* ----- Colour tool wiring ----- */
-$("colSaveBtn").onclick = saveColourPhoto;
-$("colCancelBtn").onclick = closeColourUpload;
-$("colModalBg").onclick = (e) => { if (e.target === $("colModalBg")) closeColourUpload(); };
-// rich-text toolbar (inline commands + blocks)
-$("rtToolbar").querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => rtExec(b.dataset.cmd));
-$("rtToolbar").querySelectorAll("[data-block]").forEach(b => b.onclick = () => rtBlock(b.dataset.block));
-$("rtLink").onclick = () => {
-  const url = prompt("Link URL (https://…)");
-  if (url) rtExec("createLink", url);
-};
-$("rtImage").onclick = () => $("rtImageFile").click();
-$("rtVideo").onclick = () => {
-  const choice = confirm("OK = paste a YouTube/Vimeo link.\nCancel = upload a video file.");
-  if (choice){
-    const url = prompt("Video URL (YouTube or Vimeo)");
-    if (!url) return;
-    const html = videoEmbedHtml(url);
-    if (html) rtInsertHtml(html);
-    else showErr("That doesn't look like a YouTube or Vimeo link.");
-  } else {
-    $("rtVideoFile").click();
-  }
-};
-$("rtImageFile").onchange = async (e) => {
-  const file = e.target.files[0]; if (!file) return;
-  $("rtStatus").textContent = "Uploading image…";
-  try { const url = await uploadMedia(file, CMS_BUCKET); rtInsertHtml(`<img src="${url}" alt="">`); $("rtStatus").textContent=""; }
-  catch(err){ $("rtStatus").textContent = "Image upload failed: " + err.message; }
-  e.target.value = "";
-};
-$("rtVideoFile").onchange = async (e) => {
-  const file = e.target.files[0]; if (!file) return;
-  $("rtStatus").textContent = "Uploading video…";
-  try { const url = await uploadMedia(file, CMS_BUCKET); rtInsertHtml(`<video src="${url}" controls style="max-width:100%"></video>`); $("rtStatus").textContent=""; }
-  catch(err){ $("rtStatus").textContent = "Video upload failed: " + err.message; }
-  e.target.value = "";
-};
-
 $("lightbox").onclick = closeLightbox;
-document.addEventListener("keydown", (e) => { if (e.key==="Escape"){ closeModal(); closeTagModal(); closePantry(); closeAccount(); closePostEditor(); closeCmsEditor(); closeCmsTagModal(); closeColourUpload(); closeLightbox(); } });
+document.addEventListener("keydown", (e) => { if (e.key==="Escape"){ closeModal(); closeTagModal(); closePantry(); closeAccount(); closePostEditor(); closeLightbox(); } });
 
 refreshAuthUI();
 loadAll();
