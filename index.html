@@ -4,36 +4,36 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>The Farrow Bloody Mary Compendium</title>
-<meta name="theme-color" content="#100e0c" />
+<meta name="theme-color" content="#ffffff" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="icon" type="image/png" href="icon-192.png" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-title" content="Bloody Marys" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <style>
   /* ============================================================
      Proudley's Projects — raw-HTML look: Times, black rules,
      default blue links. The one loud thing: big bold scores.
      ============================================================ */
   :root {
-    /* Bar back: dark room, warm light, brass fittings */
-    --bg: #100e0c;
-    --surface: #17140f;
-    --well: #221d16;
-    --hover: #2a231a;
-    --ink: #f4ede0;
-    --muted: #b6a891;
-    --faint: #9a8d79;
-    --soft: #3a3227;
-    --rule: #3d3428;
-    --rule-strong: #6b5a3c;
-    --brass: #d9ac52;
-    --brass-lit: #f0c877;
-    --brass-dim: #8a6f3d;
-    --link: #d9ac52;
-    --visited: #c79a6a;
+    /* Guide: white paper, near-black text, one claret accent */
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --well: #f6f6f4;
+    --hover: #efefec;
+    --ink: #17181a;
+    --muted: #5d6166;
+    --faint: #7c8085;
+    --soft: #e6e6e3;
+    --rule: #e2e2de;
+    --rule-strong: #c9c9c3;
+    --brass: #a4232c;
+    --brass-lit: #85161e;
+    --brass-dim: #d9d9d4;
+    --link: #a4232c;
+    --visited: #7d1a22;
     --tabbar-h: 62px;
     --safe-b: env(safe-area-inset-bottom, 0px);
     --safe-t: env(safe-area-inset-top, 0px);
@@ -45,8 +45,8 @@
     background: var(--bg);
     background-image: radial-gradient(120% 80% at 50% -10%, #1d1913 0%, var(--bg) 60%);
     background-attachment: fixed;
-    font-family: "Times New Roman", Times, serif;
-    font-size: 17px; line-height: 1.45;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px; line-height: 1.55;
   }
   a { color: var(--link); text-decoration: underline; }
   a:visited { color: var(--visited); }
@@ -426,83 +426,115 @@
   }
   @media (max-width: 359px) { #list { grid-template-columns: 1fr; } }
 
+
   /* ============================================================
-     BAR BACK — menu-board details
+     GUIDE — clean editorial layout, in the manner of a drinks guide
      ============================================================ */
-  body { -webkit-font-smoothing: antialiased; }
-  a:hover { color: var(--brass-lit); }
-  header.app { border-bottom: 1px solid var(--brass-dim); }
-  #siteTitle, #siteTitle:visited { color: var(--ink); text-decoration: none; letter-spacing: .02em; }
-  #siteTitle:hover { color: var(--brass); }
-  .subnav { border-bottom: 1px solid var(--rule); }
-  .navlink.active { color: var(--brass); text-decoration: none; border-bottom: 1px solid var(--brass); }
+  body { background: #fff; -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3 { letter-spacing: -.015em; }
 
-  /* scores: condensed, brass, readable across a room */
-  .bigscore { font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif; font-weight: 700; color: var(--brass); letter-spacing: .01em; }
-  .bigscore small { color: var(--faint); font-family: "Times New Roman", Times, serif; }
-  .bigscore.none { color: var(--faint); font-family: "Times New Roman", Times, serif; }
-  .rater-val { font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif; color: var(--brass); }
-  .league .sc { font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif; color: var(--brass); }
+  header.app { border-bottom: 1px solid var(--ink); padding-bottom: 8px; }
+  #siteTitle, #siteTitle:visited { color: var(--ink); text-decoration: none; font-weight: 800; letter-spacing: -.02em; }
+  .subnav { border-bottom: 1px solid var(--rule); gap: 4px 20px; }
+  .navlink, a.navlink:visited { color: var(--muted); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; text-decoration: none; padding: 6px 0; }
+  .navlink:hover { color: var(--ink); text-decoration: none; }
+  .navlink.active { color: var(--ink); border-bottom: 2px solid var(--brass); }
+  .navlink.cta { color: var(--brass); }
 
-  /* menu leader dots between a name and its score */
-  .rcard-head { align-items: baseline; }
-  .leader { flex: 1; border-bottom: 1px dotted var(--rule-strong); margin: 0 8px 6px; min-width: 18px; }
+  /* cards: square photo, name, one line of meta */
+  #list { gap: 22px 18px; }
+  .rcard { border: 0; background: transparent; }
+  .rcard-photo { aspect-ratio: 1 / 1; border: 1px solid var(--rule); background: var(--well); }
+  .rcard:hover .rcard-photo { border-color: var(--rule-strong); }
+  .rcard-body { padding: 10px 0 0; }
+  .card-name { font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+  .card-source { font-size: 14px; font-style: normal; }
+  .leader { display: none; }
+  .bigscore { font-weight: 800; color: var(--brass); letter-spacing: -.02em; }
+  .bigscore small { color: var(--faint); font-weight: 600; }
+  .bigscore.none { color: var(--faint); font-style: normal; font-weight: 600; font-size: 14px; }
 
-  /* section labels like a menu board */
-  .section-title, .lbl { font-variant: small-caps; letter-spacing: .09em; }
-  .section-title { font-style: normal; color: var(--brass); border-bottom: 1px solid var(--rule-strong); }
-  .card-name, .detail-name, .cms-full-title, .post-full h1, .about h2, .tool-title, .pod .pn { color: var(--ink); }
-  .card-source, .by, .home-intro, .post-meta { color: var(--muted); }
+  /* recipe page: hero photo beside the facts, like a guide entry */
+  .detail { max-width: 900px; }
+  .detail-hero { display: grid; gap: 22px; }
+  @media (min-width: 820px){ .detail-hero { grid-template-columns: 340px minmax(0,1fr); align-items: start; } }
+  .detail-hero .photo-thumb { margin: 0; aspect-ratio: 1 / 1; max-height: none; object-fit: cover; border: 1px solid var(--rule); }
+  .detail-hero .nophoto-box { aspect-ratio: 1/1; border: 1px solid var(--rule); background: var(--well); }
+  .detail-name { font-size: clamp(28px, 4.4vw, 40px); font-weight: 800; }
+  .detail-head .bigscore { font-size: 44px; }
+  .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; font-style: normal;
+    color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 6px; margin: 30px 0 12px; }
+  .sub-title { font-size: 15px; font-weight: 700; margin: 18px 0 6px; }
+  .lbl { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-variant: normal; }
 
-  /* photos in thin brass frames */
-  .photo-thumb, .gallery-item, .rcard-photo, .related-card img, .related-card .nophoto-box,
-  .pod img, .pod .nophoto-box, .log-item img, .log-item .noimg { border-color: var(--brass-dim); }
-  .rcard-photo { border-bottom: 1px solid var(--brass-dim); }
-  .gallery-item .cap { background: rgba(16,14,12,.88); border-top: 1px solid var(--brass-dim); color: var(--ink); }
+  /* the ingredients table: amounts right-aligned, names beside them */
+  .ing-table { width: 100%; border-collapse: collapse; }
+  .ing-table td { border-bottom: 1px solid var(--rule); padding: 9px 0; vertical-align: top; }
+  .ing-table .amt { width: 7.5em; text-align: right; padding-right: 14px; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .ing-table tr:last-child td { border-bottom: 0; }
 
-  /* controls */
-  button { background: transparent; border-color: var(--rule-strong); color: var(--ink); }
-  button:hover { background: var(--hover); border-color: var(--brass-dim); }
-  .btn-primary, .btn-add { background: var(--brass); color: #17140f; border-color: var(--brass); font-weight: bold; }
-  .btn-primary:hover, .btn-add:hover { background: var(--brass-lit); border-color: var(--brass-lit); }
-  .btn-del { color: #e0736a; border-color: #5e3a35; }
-  .btn-del:hover { background: #2a1c1a; }
+  /* serves / units controls */
+  .controls { display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; margin: 4px 0 14px; }
+  .control { display: flex; align-items: center; gap: 8px; }
+  .control .lbl { margin: 0; }
+  .seg { border: 1px solid var(--rule-strong); border-radius: 3px; overflow: hidden; margin: 0; }
+  .seg button { border: 0; border-right: 1px solid var(--rule-strong); padding: 6px 12px; font-size: 14px; font-weight: 600; background: #fff; color: var(--muted); }
+  .seg button:hover { background: var(--hover); }
+  .seg button.on { background: var(--ink); color: #fff; }
+
+  /* method, numbered straight through like a guide */
+  .method { counter-reset: step; }
+  .method li { gap: 14px; margin-bottom: 12px; }
+  .method .n { color: var(--brass); font-weight: 800; min-width: 22px; }
+
+  /* everything else, tidied */
+  button { border-radius: 3px; border-color: var(--rule-strong); color: var(--ink); background: #fff; font-weight: 600; font-size: 15px; }
+  button:hover { background: var(--hover); }
+  .btn-primary, .btn-add { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn-primary:hover, .btn-add:hover { background: #000; }
+  .btn-del { color: var(--brass); border-color: var(--rule-strong); }
   input[type=text], input[type=search], input[type=email], input[type=password],
-  input[type=date], input[type=url], select, textarea, .rt-editor {
-    background: var(--well); color: var(--ink); border-color: var(--rule-strong);
-  }
-  ::placeholder { color: var(--faint); }
-  input[type=date] { color-scheme: dark; }
-  .filebtn { background: transparent; border-color: var(--rule-strong); }
-  .filebtn:hover { background: var(--hover); }
-  .tag, .chip, .meta-pill { background: transparent; color: var(--ink); border-color: var(--rule-strong); }
-  .meta-pill { color: var(--muted); border-color: var(--rule); }
-  .chip.pick.on, .seg button.on, .rater-quick button.on { background: var(--brass); color: #17140f; border-color: var(--brass); }
-
-  /* panels and bars */
-  .card, .rcard, .related-card, .cms-card, .modal, .sheet, .panel, .empty, .tag-mgr-row,
-  .log-item, .pod, .pantry-card { background: var(--surface); }
-  .panel { border-color: var(--brass-dim); }
-  .tabbar { background: #14110d; border-top: 1px solid var(--brass-dim); }
-  .tab, a.tab:visited { color: var(--muted); }
-  .tab.active { color: var(--brass); }
-  .tab.plus .ti { background: var(--brass); color: #17140f; border-color: #14110d; outline-color: var(--brass-dim); }
-  .cook { background: var(--bg); }
-  .cook-bar { background: var(--well); }
+  input[type=date], input[type=url], select, textarea, .rt-editor { border-radius: 3px; border-color: var(--rule-strong); background: #fff; }
+  .tag, .chip, .meta-pill { border-radius: 999px; border-color: var(--rule-strong); color: var(--muted); font-size: 13px; padding: 3px 11px; background: #fff; }
+  .chip.pick.on, .rater-quick button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .panel { border: 1px solid var(--rule); border-radius: 4px; background: var(--well); }
+  .rater-val { color: var(--brass); font-weight: 800; }
+  .related-card, .cms-card, .log-item, .pantry-card, .pod { border-radius: 4px; border-color: var(--rule); }
+  .related-card img, .related-card .nophoto-box { aspect-ratio: 1/1; }
+  .gallery-item { border-radius: 4px; border-color: var(--rule); }
+  .gallery-item .cap { background: rgba(255,255,255,.94); border-top: 1px solid var(--rule); color: var(--ink); font-weight: 600; }
+  .empty { border-radius: 4px; border-color: var(--rule-strong); color: var(--muted); }
+  .league td { border-bottom: 1px solid var(--rule); }
+  .league tr:first-child td { border-top: 1px solid var(--ink); }
+  .league .sc { color: var(--brass); font-weight: 800; }
+  .pod.p1 .pos { background: var(--ink); color: #fff; }
+  .pod .pos { border-bottom: 1px solid var(--rule); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+  .tabbar { background: #fff; border-top: 1px solid var(--rule-strong); }
+  .tab, a.tab:visited { color: var(--muted); font-weight: 600; }
+  .tab.active { color: var(--ink); text-decoration: none; }
+  .tab.plus .ti { background: var(--ink); color: #fff; border-color: #fff; outline-color: var(--rule-strong); border-radius: 999px; }
+  .cook { background: #fff; }
+  .cook-bar { background: var(--soft); }
   .cook-bar i { background: var(--brass); }
-  .pod.p1 .pos { background: var(--brass); color: #17140f; }
-  .shop-list li.done label { color: var(--faint); }
-
-  /* messages */
-  .banner.note { background: #241d10; border-color: var(--brass-dim); color: var(--brass-lit); }
-  #errBanner { background: #2a1714; border-color: #8c453c; color: #f0b3ab; }
-  #infoBanner { background: var(--brass); color: #17140f; }
-  #errBanner::after { color: #c98d85; }
-
-  /* the map is daylight-bright by default: dim it to match the room */
-  #logMap .leaflet-tile { filter: grayscale(.45) brightness(.72) contrast(1.06) sepia(.12); }
-  #logMap .leaflet-container { background: var(--well); }
-  #logMap .leaflet-popup-content-wrapper, #logMap .leaflet-popup-tip { background: var(--surface); color: var(--ink); }
+  .modal, .sheet { border-radius: 4px; border-color: var(--rule-strong); }
+  .banner.note { background: #fdf6e3; border-color: #d9c48a; color: #5c4a13; }
+  #errBanner { background: #fdf0ef; border-color: #d9a3a0; color: #7d1a22; }
+  #infoBanner { background: var(--ink); color: #fff; border-color: var(--ink); }
+  #errBanner, #infoBanner { border-radius: 4px; box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+  .home-intro, .post-meta, .card-source { color: var(--muted); font-style: normal; }
+  #logMap .leaflet-tile { filter: none; }
+  @media (max-width: 680px){
+    h1 { font-size: 17px; }
+    #headerActions { gap: 12px; }
+    .controls { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .seg button { white-space: nowrap; font-size: 13px; padding: 7px 10px; }
+    .detail-head .bigscore { font-size: 36px; }
+    .ing-table .amt { width: 6em; }
+    .card-name { font-size: 15px; }
+    .bigscore { font-size: 22px; }
+  }
 </style>
 </head>
 <body>
@@ -1267,6 +1299,53 @@ function scaleLine(line, f){
   return out + line.slice(m[0].length);
 }
 
+
+/* ---------- ingredients split into amount + unit + name, guide style ---------- */
+const UNIT_RE = /^\s*(fl ?oz|ml|cl|tsp|tbsp|tbs|oz|l|g|dash(?:es)?|drops?|pinch(?:es)?|parts?|shots?|cups?|slices?|wedges?|cloves?|sprigs?|cubes?|measures?)\b\.?\s*/i;
+let unitPref = (() => { try { return localStorage.getItem("bm_units") || "ml"; } catch { return "ml"; } })();
+function parseIngredient(line){
+  const m = line.match(QTY_RE);
+  if (!m) return { qty: null, qty2: null, unit: null, rest: line.trim() };
+  let rest = line.slice(m[0].length);
+  const um = rest.match(UNIT_RE);
+  let unit = null;
+  if (um){ unit = um[1].toLowerCase().replace(/\s+/g, " ").replace("floz", "fl oz"); rest = rest.slice(um[0].length); }
+  return { qty: parseQty(m[2]), qty2: m[4] ? parseQty(m[4]) : null, unit, rest: rest.trim() };
+}
+const FRACS = { 1:{2:"1⁄2"}, 2:{3:"2⁄3"}, 3:{4:"3⁄4"} };
+function fmtFraction(v){
+  const n = Math.round(v * 12), whole = Math.floor(n / 12);
+  let num = n % 12, den = 12;
+  const g = (a,b) => b ? g(b, a % b) : a;
+  if (num){ const d = g(num, den); num /= d; den /= d; }
+  const frac = num ? `${num}⁄${den}` : "";
+  if (!whole && !num) return "0";
+  return whole ? (frac ? `${whole} ${frac}` : String(whole)) : frac;
+}
+function fmtAmount(ing, scale){
+  if (ing.qty == null) return "";
+  const one = (v) => {
+    v = v * scale;
+    if (unitPref === "oz" && (ing.unit === "ml" || ing.unit === "cl"))
+      return fmtFraction((ing.unit === "cl" ? v * 10 : v) / 29.5735) + " fl oz";
+    if (unitPref === "ml" && (ing.unit === "fl oz" || ing.unit === "oz"))
+      return `${Math.round(v * 29.5735 / 2.5) * 2.5} ml`;
+    return fmtQty(v) + (ing.unit ? " " + ing.unit : "");
+  };
+  return ing.qty2 != null ? `${one(ing.qty)}–${one(ing.qty2)}` : one(ing.qty);
+}
+function ingLineText(line, scale){
+  const p = parseIngredient(line);
+  const a = fmtAmount(p, scale);
+  return a ? `${a} ${p.rest}` : p.rest;
+}
+function ingTableHTML(lines, scale){
+  return `<table class="ing-table"><tbody>${lines.map(l => {
+    const p = parseIngredient(l);
+    return `<tr><td class="amt">${esc(fmtAmount(p, scale))}</td><td>${esc(p.rest)}</td></tr>`;
+  }).join("")}</tbody></table>`;
+}
+
 /* ================= LIST ================= */
 function renderFilterTags(){
   const box = $("filterTags");
@@ -1344,49 +1423,57 @@ function showDetail(id){
   view.innerHTML = `
     <button class="back-btn" type="button" onclick="location.hash='#/'">← All recipes</button>
     <article class="detail">
-      <div class="detail-head">
-        <div style="min-width:0">
-          <h1 class="detail-name">${esc(r.name||"Untitled")}</h1>
-          ${r.source ? `<p class="by">made by ${esc(r.source)}</p>` : ""}
-          <div id="detailPeople">${peopleHTML(r)}</div>
-        </div>
-        <div id="detailScore">${scoreBig(recipeScore(r))}</div>
-      </div>
-      ${r.photo_url ? `<img class="photo-thumb" src="${esc(r.photo_url)}" alt="${esc(r.name||"")}" onclick="openLightbox('${esc(r.photo_url)}')" style="cursor:zoom-in">` : ""}
-      ${(spice||tagChips) ? `<div class="tags">${spice}${tagChips}</div>` : ""}
-      ${meta ? `<div class="tags">${meta}</div>` : ""}
-
-      <div class="panel">
-        <span class="lbl">${features.ratings ? "Your score" : "Score"}</span>
-        <div id="detailRater"></div>
-        <p class="muted" id="detailRaterStatus" style="margin:6px 0 0" aria-live="polite"></p>
-      </div>
-
-      ${steps.length ? `<button class="btn-primary" type="button" id="cookBtn" style="min-height:48px;width:100%;max-width:360px;font-size:18px">Start cook mode</button>` : ""}
-
-      <div class="detail-cols">
+      <div class="detail-hero">
+        <div>${r.photo_url
+          ? `<img class="photo-thumb" src="${esc(r.photo_url)}" alt="${esc(r.name||"")}" onclick="openLightbox('${esc(r.photo_url)}')" style="cursor:zoom-in">`
+          : `<div class="nophoto-box" style="display:flex;align-items:center;justify-content:center"><span class="nophoto">no photo yet</span></div>`}</div>
         <div>
-          ${lines.length ? `<div class="section-title">Ingredients</div>
-            <div class="seg" role="group" aria-label="Scale the recipe">${SCALES.map(([f,l]) => `<button type="button" data-scale="${f}" class="${detailScale===f?"on":""}" aria-pressed="${detailScale===f}">${l}</button>`).join("")}</div>
-            <ul id="ingList">${ingListHTML(lines)}</ul>
-            <p class="muted small" id="scaleNote" style="margin:0;${detailScale===1?"display:none":""}">Only amounts written as numbers are scaled. Dashes and "to taste" are up to you.</p>` : ""}
-        </div>
-        <div>
-          ${steps.length ? `<div class="section-title">Method</div><ol class="method">${steps.map((s,i) => `<li><span class="n">${i+1}</span><span>${esc(s)}</span></li>`).join("")}</ol>` : ""}
+          <div class="detail-head">
+            <div style="min-width:0">
+              <h1 class="detail-name">${esc(r.name||"Untitled")}</h1>
+              ${r.source ? `<p class="by">${esc(r.source)}</p>` : ""}
+              <div id="detailPeople">${peopleHTML(r)}</div>
+            </div>
+            <div id="detailScore">${scoreBig(recipeScore(r))}</div>
+          </div>
+          ${(spice||tagChips||meta) ? `<div class="tags" style="margin-top:12px">${spice}${tagChips}${meta}</div>` : ""}
+          <div class="panel" style="margin-top:16px">
+            <span class="lbl">${features.ratings ? "Your score" : "Score"}</span>
+            <div id="detailRater"></div>
+            <p class="muted" id="detailRaterStatus" style="margin:6px 0 0" aria-live="polite"></p>
+          </div>
+          ${steps.length ? `<button class="btn-primary" type="button" id="cookBtn" style="margin-top:14px;min-height:46px;width:100%;max-width:340px">Start cook mode</button>` : ""}
         </div>
       </div>
+
+      ${lines.length ? `<div class="section-title">Ingredients</div>
+        <div class="controls">
+          <div class="control"><span class="lbl">Serves</span>
+            <span class="seg" role="group" aria-label="Scale the recipe">${SCALES.map(([f,l]) => `<button type="button" data-scale="${f}" class="${detailScale===f?"on":""}" aria-pressed="${detailScale===f}">${l}</button>`).join("")}</span>
+          </div>
+          <div class="control"><span class="lbl">Measurements in</span>
+            <span class="seg" role="group" aria-label="Units">
+              <button type="button" data-unit="ml" class="${unitPref==="ml"?"on":""}">ml</button>
+              <button type="button" data-unit="oz" class="${unitPref==="oz"?"on":""}">fl oz</button>
+            </span>
+          </div>
+        </div>
+        <div id="ingWrap">${ingTableHTML(lines, detailScale)}</div>
+        <p class="muted small" id="scaleNote" style="margin:8px 0 0;${detailScale===1?"display:none":""}">Only amounts written as numbers are scaled. Dashes and "to taste" are up to you.</p>` : ""}
+
+      ${steps.length ? `<div class="section-title">How to make</div><ol class="method">${steps.map((s,i) => `<li><span class="n">${i+1}</span><span>${esc(s)}</span></li>`).join("")}</ol>` : ""}
       ${r.notes ? `<div class="section-title">Notes</div><p class="notes">${esc(r.notes)}</p>` : ""}
 
       ${features.tastings ? `<div class="section-title">Had one of these</div>
         ${seen.length ? `<ul>${seen.slice(0,8).map(t => `<li>${esc(t.place||"Somewhere")}${t.date ? `, ${esc(formatDate(t.date))}` : ""}. ${esc(displayName(t.user_id))}${t.score!=null ? ` gave it <b>${fmtScore(Number(t.score))}</b>` : ""}</li>`).join("")}</ul>` : `<p class="muted">Not logged yet.</p>`}
-        <button type="button" id="logThisBtn">+ Log one of these</button>` : ""}
+        <button type="button" id="logThisBtn" style="margin-top:10px">+ Log one of these</button>` : ""}
 
       <div class="card-foot">
         <button type="button" onclick="startEdit('${r.id}')">Edit recipe</button>
         <button class="btn-del" type="button" onclick="delRecipe('${r.id}')">Delete recipe</button>
       </div>
 
-      <div class="section-title">You might also like</div>
+      <div class="section-title">Variations and similar</div>
       ${related.length ? `<div class="related-grid">${related.map(rr => `
         <button class="related-card" type="button" onclick="location.hash='#/recipe/${rr.id}'">
           ${rr.photo_url ? `<img src="${esc(rr.photo_url)}" alt="" loading="lazy">` : `<span class="nophoto-box"><span class="nophoto">no photo</span></span>`}
@@ -1398,11 +1485,20 @@ function showDetail(id){
   mountRater($("detailRater"), myVal, v => queueMyRating(r.id, v));
   const cb = $("cookBtn"); if (cb) cb.onclick = () => { location.hash = `#/recipe/${r.id}/cook`; };
   const lb = $("logThisBtn"); if (lb) lb.onclick = () => openLogModal(null, r.id);
+  const redrawIngs = () => {
+    $("ingWrap").innerHTML = ingTableHTML(lines, detailScale);
+    $("scaleNote").style.display = detailScale === 1 ? "none" : "";
+  };
   view.querySelectorAll("[data-scale]").forEach(b => b.onclick = () => {
     detailScale = +b.dataset.scale;
     view.querySelectorAll("[data-scale]").forEach(x => { const on = +x.dataset.scale === detailScale; x.classList.toggle("on", on); x.setAttribute("aria-pressed", on); });
-    $("ingList").innerHTML = ingListHTML(lines);
-    $("scaleNote").style.display = detailScale === 1 ? "none" : "";
+    redrawIngs();
+  });
+  view.querySelectorAll("[data-unit]").forEach(b => b.onclick = () => {
+    unitPref = b.dataset.unit;
+    try { localStorage.setItem("bm_units", unitPref); } catch {}
+    view.querySelectorAll("[data-unit]").forEach(x => x.classList.toggle("on", x.dataset.unit === unitPref));
+    redrawIngs();
   });
 }
 function queueMyRating(recipeId, v){
@@ -1422,7 +1518,7 @@ function queueMyRating(recipeId, v){
 function openCook(id){
   const r = recipes.find(x => String(x.id)===String(id)); if (!r) return;
   const steps = recipeSteps(r);
-  const ings = (r.ingredients||"").split("\n").map(s=>s.trim()).filter(Boolean).map(x => scaleLine(x, detailScale));
+  const ings = (r.ingredients||"").split("\n").map(s=>s.trim()).filter(Boolean).map(x => ingLineText(x, detailScale));
   cookState = { id: r.id, steps: steps.length ? steps : ["No method written yet. The ingredients are below."], i: 0 };
   $("cookTitle").textContent = r.name || "Untitled";
   $("cookIngs").innerHTML = ings.map(x => `<li>${esc(x)}</li>`).join("") || "<li>No ingredients listed.</li>";
