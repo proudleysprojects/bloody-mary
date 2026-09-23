@@ -1746,7 +1746,7 @@ function renderLog(){
       <p class="home-intro">Every bloody mary had out and about: ${tastings.length} so far.</p>
       ${geo.length ? `<div id="logMap"><p class="muted" style="padding:10px;margin:0">Loading map…</p></div>` : ""}
       ${tastings.length ? `<div class="log-list">${tastings.map(logItemHTML).join("")}</div>`
-        : `<div class="empty"><p>Nothing logged yet. Next time you order one, tap + and log it. It takes twenty seconds.</p></div>`}
+        : `<div class="empty"><p>Nothing logged yet. Next time you order one, tap + and log it.</p></div>`}
     </div>`;
   $("logNewBtn").onclick = () => openLogModal();
   view.querySelectorAll("[data-log]").forEach(b => b.onclick = () => openLogModal(b.dataset.log));
@@ -1857,7 +1857,7 @@ function renderShopping(){
   view.innerHTML = `
     <div class="shop">
       <h2 class="tool-title">Shopping list</h2>
-      <p class="home-intro">Shared between you both. Add missing bits from "What can I make?", or type them here.</p>
+      <p class="home-intro">Add ingredients...if you want!</p>
       <form class="shop-add" id="shopForm">
         <input type="text" id="shopInput" placeholder="Add an item" autocomplete="off" enterkeyhint="done" aria-label="Item to add" />
         <button class="btn-primary" type="submit">Add</button>
