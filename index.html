@@ -1718,7 +1718,7 @@ function renderLeague(){
       <div class="section-title">Biggest disagreements</div>
       ${!features.ratings ? `<p class="muted">Separate scores need the database update in UPGRADE_SETUP.md.</p>`
         : dis.length ? `<ul class="dis-list">${dis.map(d => `<li><a href="#/recipe/${d.r.id}">${esc(d.r.name)}</a>: ${d.rs.map(x => `${esc(displayName(x.user_id))} ${fmtScore(Number(x.score))}`).join(" vs ")} <span class="muted">(${fmtScore(d.spread)} apart)</span></li>`).join("")}</ul>`
-        : `<p class="muted">No arguments yet. Once you've both scored the same recipe differently, it shows up here.</p>`}
+        : `<p class="muted">No arguments yet.</p>`}
       ${unrated.length ? `<div class="section-title">Not scored yet</div><p>${unrated.map(r => `<a href="#/recipe/${r.id}">${esc(r.name)}</a>`).join(", ")}</p>` : ""}
     </div>`;
 }
