@@ -469,6 +469,11 @@
   .sub-title { font-size: 15px; font-weight: 700; margin: 18px 0 6px; }
   .lbl { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-variant: normal; }
 
+  .avatar { width: 22px; height: 22px; border-radius: 999px; object-fit: cover; border: 1px solid var(--rule-strong); vertical-align: -6px; background: var(--well); }
+  .avatar.initials { display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: .02em; }
+  .avatar-lg { width: 72px; height: 72px; font-size: 24px; }
+  .people-scores span { display: inline-flex; align-items: center; gap: 6px; }
+
   /* the ingredients table: amounts right-aligned, names beside them */
   .ing-table { width: 100%; border-collapse: collapse; }
   .ing-table td { border-bottom: 1px solid var(--rule); padding: 9px 0; vertical-align: top; }
@@ -573,7 +578,7 @@
   <div id="authView" style="display:none">
     <div class="detail" style="max-width:380px;margin:40px auto">
       <h2 id="authTitle" style="margin:0 0 4px">Sign in</h2>
-      <p class="muted" style="margin:0 0 18px">Log in to reach the site.</p>
+      <p class="muted" style="margin:0 0 18px" id="authIntro">Log in to reach the site.</p>
       <div class="field">
         <label for="auth-email">Email</label>
         <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email" />
@@ -657,7 +662,7 @@
 </div>
 
 <!-- Cook mode -->
-<div class="cook" id="cookMode" role="dialog" aria-modal="true" aria-label="Mixing mode">
+<div class="cook" id="cookMode" role="dialog" aria-modal="true" aria-label="Cook mode">
   <div class="cook-top"><span class="cook-title" id="cookTitle"></span><button type="button" id="cookExit">Done</button></div>
   <div class="cook-progress" id="cookProgress"></div>
   <div class="cook-bar"><i id="cookBar"></i></div>
@@ -831,6 +836,18 @@
     <h2>Account</h2>
     <p class="muted" style="margin-top:-6px">Signed in as <strong id="acctEmail"></strong></p>
     <div class="field">
+      <span class="lbl">Your picture</span>
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <span id="acctAvatar"></span>
+        <div class="photo-btns">
+          <label class="filebtn">📷 Take photo<input type="file" id="acct-photo-cam" accept="image/*" capture="user" /></label>
+          <label class="filebtn">🖼 Choose photo<input type="file" id="acct-photo" accept="image/*" /></label>
+          <button type="button" id="acctPhotoRemove">Remove</button>
+        </div>
+      </div>
+      <p class="muted" id="acctPhotoStatus" style="margin:6px 0 0;min-height:18px"></p>
+    </div>
+    <div class="field">
       <label for="acctName">Your name, shown next to your scores</label>
       <div style="display:flex;gap:8px"><input type="text" id="acctName" placeholder="e.g. Sam" /><button type="button" id="acctNameSave">Save name</button></div>
       <p class="muted" id="acctNameNote" style="margin:4px 0 0"></p>
@@ -838,7 +855,7 @@
     <div class="field">
       <span class="lbl">Backup</span>
       <button type="button" id="acctExport">💾 Download a backup</button>
-      <p class="muted" style="margin:4px 0 0">Saves every recipe, score, drink, post and entry to a file on your device.</p>
+      <p class="muted" style="margin:4px 0 0">Saves every recipe, score, drink, post and entry to a file on your device. Photos stay online; the file keeps their links.</p>
     </div>
     <div class="form-actions">
       <button id="signOutBtn" class="btn-del" type="button">Sign out</button>
@@ -885,6 +902,9 @@ const SUPABASE_ANON_KEY = "sb_publishable_6oLX612RoEj_T9o5keYEDw_HOrKc8fh";
 const PHOTO_BUCKET = "recipe-photos";
 const CMS_BUCKET = "cms-media";
 const COLOUR_BUCKET = "colour-photos";
+/* Accounts are invite only: new sign-ups are turned off in Supabase itself,
+   so this just hides the "create account" option. See UPGRADE_SETUP.md. */
+const SIGNUPS_OPEN = false;
 /* ============================================================ */
 
 const cleanUrl = () => SUPABASE_URL.trim().replace(/\/+$/, "");
@@ -1198,7 +1218,7 @@ function scoreBig(v){ return v == null ? `<span class="bigscore none">not scored
 function peopleHTML(r){
   const rs = ratingsFor(r.id);
   if (!rs.length) return (Number(r.rating) > 0) ? `<div class="people-scores muted">Shared score from before separate scores</div>` : "";
-  return `<div class="people-scores">${rs.map(x => `<span>${esc(displayName(x.user_id))}: <b>${fmtScore(Number(x.score))}</b></span>`).join("")}${rs.length>1?`<span class="muted">average ${fmtScore(recipeScore(r))}</span>`:""}</div>`;
+  return `<div class="people-scores">${rs.map(x => `<span>${avatarHTML(x.user_id)} ${esc(displayName(x.user_id))}: <b>${fmtScore(Number(x.score))}</b></span>`).join("")}${rs.length>1?`<span class="muted">average ${fmtScore(recipeScore(r))}</span>`:""}</div>`;
 }
 async function saveMyRating(recipeId, v){
   if (!features.ratings){
@@ -1216,6 +1236,64 @@ async function saveMyRating(recipeId, v){
     const ex = recipeRatings.find(x => String(x.recipe_id)===String(recipeId) && x.user_id===me);
     if (ex) ex.score = v; else recipeRatings.push({ recipe_id: Number(recipeId), user_id: me, score: v });
   }
+}
+
+/* ---------- profile pictures ---------- */
+function profileOf(uid){ return profiles.find(p => p.user_id === uid) || null; }
+function initialsOf(uid){
+  const n = displayName(uid).trim();
+  const parts = n.split(/\s+/).filter(Boolean);
+  return ((parts[0]?.[0] || "?") + (parts[1]?.[0] || "")).toUpperCase();
+}
+function avatarHTML(uid, cls = ""){
+  const url = profileOf(uid)?.avatar_url;
+  return url
+    ? `<img class="avatar ${cls}" src="${esc(url)}" alt="" loading="lazy">`
+    : `<span class="avatar initials ${cls}" aria-hidden="true">${esc(initialsOf(uid))}</span>`;
+}
+// square crop, small file: a 4000px selfie becomes a ~40KB thumbnail
+async function squareThumb(file, size = 320){
+  try {
+    const url = URL.createObjectURL(file);
+    const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; });
+    const side = Math.min(img.naturalWidth, img.naturalHeight);
+    const sx = (img.naturalWidth - side) / 2, sy = (img.naturalHeight - side) / 2;
+    const c = document.createElement("canvas"); c.width = c.height = size;
+    const ctx = c.getContext("2d");
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, size, size);
+    ctx.drawImage(img, sx, sy, side, side, 0, 0, size, size);
+    URL.revokeObjectURL(url);
+    const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.85));
+    return blob ? new File([blob], "avatar.jpg", { type: "image/jpeg" }) : file;
+  } catch (e) { return file; }
+}
+async function saveAvatar(file){
+  const st = $("acctPhotoStatus");
+  if (!features.profiles){ st.textContent = "Names and pictures need the database update in UPGRADE_SETUP.md."; return; }
+  st.innerHTML = `<span class="spinner"></span> Uploading…`;
+  try {
+    const url = await uploadToBucket(await squareThumb(file), PHOTO_BUCKET);
+    const rows = await api("POST", "profiles", "?on_conflict=user_id",
+      { user_id: myId(), display_name: profileOf(myId())?.display_name || (currentUserEmail().split("@")[0]), avatar_url: url },
+      { "Prefer": "resolution=merge-duplicates,return=representation" });
+    profiles = profiles.filter(p => p.user_id !== myId()).concat(rows || []);
+    renderAcctAvatar(); st.textContent = "Picture saved.";
+    route(true);
+  } catch(e){ st.textContent = "Couldn't save the picture: " + e.message; }
+}
+async function removeAvatar(){
+  try {
+    const rows = await api("POST", "profiles", "?on_conflict=user_id",
+      { user_id: myId(), display_name: profileOf(myId())?.display_name || null, avatar_url: null },
+      { "Prefer": "resolution=merge-duplicates,return=representation" });
+    profiles = profiles.filter(p => p.user_id !== myId()).concat(rows || []);
+    renderAcctAvatar(); $("acctPhotoStatus").textContent = "Picture removed.";
+    route(true);
+  } catch(e){ $("acctPhotoStatus").textContent = "Couldn't remove it: " + e.message; }
+}
+function renderAcctAvatar(){
+  $("acctAvatar").innerHTML = avatarHTML(myId(), "avatar-lg");
+  const rm = $("acctPhotoRemove"); if (rm) rm.style.display = profileOf(myId())?.avatar_url ? "" : "none";
 }
 
 /* ---------- rater: tap numbers, then nudge by halves ---------- */
@@ -1686,7 +1764,7 @@ function renderLeague(){
     if (typeof v === "number" && v < 0) return `<span class="mv down">▼ ${-v}</span>`;
     return "";
   };
-  const who = (r) => ratingsFor(r.id).map(x => `${esc(displayName(x.user_id))} ${fmtScore(Number(x.score))}`).join(", ");
+  const who = (r) => ratingsFor(r.id).map(x => `${avatarHTML(x.user_id)} ${esc(displayName(x.user_id))} ${fmtScore(Number(x.score))}`).join("&nbsp;&nbsp; ");
 
   const unrated = recipes.filter(r => recipeScore(r) == null);
   const dis = recipes.map(r => {
@@ -1718,7 +1796,7 @@ function renderLeague(){
       <div class="section-title">Biggest disagreements</div>
       ${!features.ratings ? `<p class="muted">Separate scores need the database update in UPGRADE_SETUP.md.</p>`
         : dis.length ? `<ul class="dis-list">${dis.map(d => `<li><a href="#/recipe/${d.r.id}">${esc(d.r.name)}</a>: ${d.rs.map(x => `${esc(displayName(x.user_id))} ${fmtScore(Number(x.score))}`).join(" vs ")} <span class="muted">(${fmtScore(d.spread)} apart)</span></li>`).join("")}</ul>`
-        : `<p class="muted">No arguments yet.</p>`}
+        : `<p class="muted">No arguments yet. Once you've both scored the same recipe differently, it shows up here.</p>`}
       ${unrated.length ? `<div class="section-title">Not scored yet</div><p>${unrated.map(r => `<a href="#/recipe/${r.id}">${esc(r.name)}</a>`).join(", ")}</p>` : ""}
     </div>`;
 }
@@ -1730,7 +1808,7 @@ function logItemHTML(t){
     ${t.photo_url ? `<img src="${esc(t.photo_url)}" alt="" loading="lazy">` : `<span class="noimg" aria-hidden="true">🍅</span>`}
     <span class="lm">
       <span class="lp">${esc(t.place || "Somewhere")}</span>
-      <span class="ls">${esc(formatDate(t.date))}, ${esc(displayName(t.user_id))}${rec ? `. Our ${esc(rec.name)}` : ""}</span>
+      <span class="ls">${esc(formatDate(t.date))}, ${avatarHTML(t.user_id)} ${esc(displayName(t.user_id))}${rec ? `. Our ${esc(rec.name)}` : ""}</span>
       ${t.notes ? `<span class="ln">${esc(t.notes)}</span>` : ""}
     </span>
     ${t.score != null ? scoreBig(Number(t.score)) : ""}
@@ -1746,7 +1824,7 @@ function renderLog(){
       <p class="home-intro">Every bloody mary had out and about: ${tastings.length} so far.</p>
       ${geo.length ? `<div id="logMap"><p class="muted" style="padding:10px;margin:0">Loading map…</p></div>` : ""}
       ${tastings.length ? `<div class="log-list">${tastings.map(logItemHTML).join("")}</div>`
-        : `<div class="empty"><p>Nothing logged yet. Next time you order one, tap + and log it.</p></div>`}
+        : `<div class="empty"><p>Nothing logged yet. Next time you order one, tap + and log it. It takes twenty seconds.</p></div>`}
     </div>`;
   $("logNewBtn").onclick = () => openLogModal();
   view.querySelectorAll("[data-log]").forEach(b => b.onclick = () => openLogModal(b.dataset.log));
@@ -1857,7 +1935,7 @@ function renderShopping(){
   view.innerHTML = `
     <div class="shop">
       <h2 class="tool-title">Shopping list</h2>
-      <p class="home-intro">Add ingredients...if you want!</p>
+      <p class="home-intro">Shared between you both. Add missing bits from "What can I make?", or type them here.</p>
       <form class="shop-add" id="shopForm">
         <input type="text" id="shopInput" placeholder="Add an item" autocomplete="off" enterkeyhint="done" aria-label="Item to add" />
         <button class="btn-primary" type="submit">Add</button>
@@ -2123,6 +2201,8 @@ async function clearPantry(){
 /* ================= ACCOUNT + BACKUP ================= */
 function openAccount(){
   $("acctEmail").textContent = currentUserEmail();
+  $("acctPhotoStatus").textContent = "";
+  renderAcctAvatar();
   $("acctName").value = profiles.find(p => p.user_id === myId())?.display_name || "";
   $("acctNameNote").textContent = features.profiles ? "" : "Names need the database update in UPGRADE_SETUP.md.";
   $("acctNameSave").disabled = !features.profiles;
@@ -2161,6 +2241,10 @@ async function exportBackup(){
 /* ================= SIGN IN ================= */
 let authMode = "signin";
 function refreshAuthUI(){
+  $("authToggle").style.display = SIGNUPS_OPEN ? "" : "none";
+  $("authIntro").textContent = SIGNUPS_OPEN
+    ? "Log in to reach the site."
+    : "Log in to reach the site. Accounts are invite only — ask for one to be set up for you.";
   $("authTitle").textContent = authMode === "signin" ? "Sign in" : "Create account";
   $("authSubmit").textContent = authMode === "signin" ? "Sign in" : "Create account";
   $("authToggle").textContent = authMode === "signin" ? "Need an account?" : "Have an account? Sign in";
@@ -2199,6 +2283,11 @@ $("pantryDoneBtn").onclick = closePantry;
 $("pantryClearBtn").onclick = clearPantry;
 $("accountBtn").onclick = openAccount;
 $("acctNameSave").onclick = saveName;
+$("acctPhotoRemove").onclick = removeAvatar;
+["acct-photo","acct-photo-cam"].forEach(id => $(id).onchange = (e) => {
+  const f = e.target.files[0]; if (f) saveAvatar(f);
+  e.target.value = "";
+});
 $("acctExport").onclick = exportBackup;
 $("signOutBtn").onclick = () => { closeAccount(); signOut(); };
 $("acctCloseBtn").onclick = closeAccount;
