@@ -1762,7 +1762,7 @@ function renderLeague(){
   view.innerHTML = `
     <div class="tool-page">
       <h2 class="tool-title">Tomat-O-Meter</h2>
-      <p class="home-intro">Every mary on one scale: the base score plus every drink logged against it. Arrows show movement since your last visit.</p>
+      <p class="home-intro">Every Mary, Tomat-O-Metered.</p>
       ${!rated.length ? `<div class="empty"><p>Nothing scored yet. Add a recipe with a base score, or log a drink.</p></div>` : `
         <div class="meter">
           <div class="meter-axis" aria-hidden="true">${axis.map(n => `<span style="left:${n*10}%">${n}</span>`).join("")}</div>
