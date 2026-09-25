@@ -14,7 +14,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <style>
   /* ============================================================
-     Proudley's Projects.
+     Proudley's Projects — raw-HTML look: Times, black rules,
+     default blue links. The one loud thing: big bold scores.
      ============================================================ */
   :root {
     /* Guide: white paper, near-black text, one claret accent */
@@ -468,6 +469,11 @@
   .sub-title { font-size: 15px; font-weight: 700; margin: 18px 0 6px; }
   .lbl { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-variant: normal; }
 
+  .acct-drinks { max-height: 260px; overflow-y: auto; border-top: 1px solid var(--rule); }
+  .acct-drink { display: flex; align-items: center; gap: 10px; padding: 8px 2px; border-bottom: 1px solid var(--rule); }
+  .acct-drink .grow { flex: 1; min-width: 0; }
+  .acct-drink button { padding: 4px 10px; font-size: 14px; min-height: 36px; }
+
   .avatar { width: 22px; height: 22px; border-radius: 999px; object-fit: cover; border: 1px solid var(--rule-strong); vertical-align: -6px; background: var(--well); }
   .avatar.initials { display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: .02em; }
   .avatar-lg { width: 72px; height: 72px; font-size: 24px; }
@@ -557,8 +563,8 @@
     <a class="navlink" id="navRecipes" href="#/">The good stuff</a>
     <a class="navlink" id="navLeague" href="#/league">League table</a>
     <a class="navlink" id="navLog" href="#/log">Had one</a>
-    <a class="navlink" id="navGallery" href="#/gallery">Photo gallery</a>
-    <a class="navlink" id="navBlog" href="#/blog">Blog</a>
+    <a class="navlink" id="navGallery" href="#/gallery">Visual evidence</a>
+    <a class="navlink" id="navBlog" href="#/blog">Written evidence</a>
     <button class="navlink" id="pantryBtn" type="button">What can I make?</button>
     <a class="navlink" id="navShopping" href="#/shopping">Shopping list</a>
     <button class="navlink" id="tagsBtn" type="button">Tags</button>
@@ -647,7 +653,7 @@
   <div class="sheet" role="dialog" aria-label="More">
     <h3>More</h3>
     <ul class="sheet-list">
-      <li><a href="#/log"><span class="ico" aria-hidden="true">🍹</span>Had one: drinks log and map (coming soon)</a></li>
+      <li><a href="#/log"><span class="ico" aria-hidden="true">🍹</span>Had one: drinks log and map</a></li>
       <li><a href="#/gallery"><span class="ico" aria-hidden="true">📷</span>Visual evidence</a></li>
       <li><a href="#/blog"><span class="ico" aria-hidden="true">✍️</span>Written evidence</a></li>
       <li><a href="#/shopping"><span class="ico" aria-hidden="true">🛒</span>Shopping list</a></li>
@@ -704,7 +710,7 @@
       </div>
       <div class="field">
         <label for="f-location">Location</label>
-        <input type="text" id="f-location" placeholder="e.g. Manchester, or home" />
+        <input type="text" id="f-location" placeholder="e.g. Brighton, or home" />
       </div>
     </div>
     <div class="field">
@@ -712,8 +718,8 @@
       <div id="f-rater"></div>
     </div>
     <div class="field">
-      <label for="f-ingredients">Ingredients (one per line, lowercase)</label>
-      <textarea id="f-ingredients" rows="5" placeholder="50ml vodka&#10;100ml tomato juice&#10;worcestershire…"></textarea>
+      <label for="f-ingredients">Ingredients (one per line)</label>
+      <textarea id="f-ingredients" rows="5" placeholder="50ml vodka&#10;100ml tomato juice&#10;Dash of Worcestershire…"></textarea>
     </div>
     <div class="field">
       <span class="lbl">Method (step by step)</span>
@@ -749,7 +755,7 @@
     <h2 id="logModalTitle">Log a drink</h2>
     <div class="field">
       <label for="l-place">Where?</label>
-      <input type="text" id="l-place" placeholder="e.g. Burton Road, Manchester" autocomplete="off" />
+      <input type="text" id="l-place" placeholder="e.g. The Wharf, Brighton" autocomplete="off" />
     </div>
     <div class="field">
       <button type="button" id="l-geo">📍 Use my location</button>
@@ -793,7 +799,7 @@
 <div class="modal-bg" id="tagModalBg">
   <div class="modal wide" role="dialog" aria-label="Manage tags">
     <h2>Manage tags</h2>
-    <p class="muted" style="margin-top:-6px"></p>
+    <p class="muted" style="margin-top:-6px">Tags with their own colour and emoji, for any recipe.</p>
     <div id="tagList" style="margin:16px 0"></div>
     <div style="border-top:1px solid #000;padding-top:14px">
       <span class="lbl">New tag</span>
@@ -815,7 +821,7 @@
 <div class="modal-bg" id="pantryModalBg">
   <div class="modal wide" role="dialog" aria-label="What can I make?">
     <h2>What can I make?</h2>
-    <p class="muted" style="margin-top:-6px">Tap what you've got. Your pantry is saved to your account.</p>
+    <p class="muted" style="margin-top:-6px">Tick what you've got. Your pantry is saved to your account.</p>
     <input type="search" id="pantrySearch" placeholder="Filter ingredients…" style="margin:10px 0" />
     <div id="pantryPicker" style="display:flex;flex-wrap:wrap;gap:6px;max-height:220px;overflow-y:auto;padding:2px"></div>
     <div style="border-top:1px solid #000;margin:16px 0 0;padding-top:10px">
@@ -852,6 +858,10 @@
       <p class="muted" id="acctNameNote" style="margin:4px 0 0"></p>
     </div>
     <div class="field">
+      <span class="lbl">Your logged drinks</span>
+      <div id="acctDrinks"></div>
+    </div>
+    <div class="field">
       <span class="lbl">Backup</span>
       <button type="button" id="acctExport">💾 Download a backup</button>
       <p class="muted" style="margin:4px 0 0">Saves every recipe, score, drink, post and entry to a file on your device. Photos stay online; the file keeps their links.</p>
@@ -869,7 +879,7 @@
     <h2 id="postModalTitle">New post</h2>
     <div class="field">
       <label for="p-title">Title</label>
-      <input type="text" id="p-title" placeholder="Something witty about Bloody Mary's" />
+      <input type="text" id="p-title" placeholder="e.g. The hunt for the perfect rim" />
     </div>
     <div class="row">
       <div class="field">
@@ -883,7 +893,7 @@
     </div>
     <div class="field">
       <label for="p-body">Body</label>
-      <textarea id="p-body" rows="12" placeholder="Write your post…"></textarea>
+      <textarea id="p-body" rows="12" placeholder="Write your post… line breaks are kept."></textarea>
     </div>
     <div class="form-actions">
       <button class="btn-primary" id="postSaveBtn" type="button">Publish</button>
@@ -920,7 +930,7 @@ let recipeRatings = [], profiles = [], tastings = [], shopping = [];
 const features = { ratings: true, profiles: true, tastings: true, shopping: true };
 let isOffline = false;
 let editingId = null, editingPostId = null;
-let formRating = null, formTagIds = [], formSteps = [], formPhotoUrl = null, formPhotoFile = null;
+let formRating = null, formBaseEditable = true, formTagIds = [], formSteps = [], formPhotoUrl = null, formPhotoFile = null;
 let activeFilterTag = null, newTagEmoji = "🍅";
 let leagueMoves = null;
 let detailScale = 1, detailScaleFor = null;
@@ -1191,10 +1201,26 @@ function formatDate(d){
   catch { return d; }
 }
 
-/* ---------- scores: everyone rates separately ---------- */
+/* ---------- scores: a base score from whoever added it, plus every logged drink ---------- */
+function hasBase(){ return recipes.length ? ("base_score" in recipes[0]) : true; }
+function ownerOf(r){ return r.created_by || null; }
+function canSetBase(r){ return !r.created_by || r.created_by === myId(); }
+function loggedScoresFor(recipeId){
+  return tastings.filter(t => String(t.recipe_id)===String(recipeId) && t.score != null);
+}
 function ratingsFor(recipeId){ return recipeRatings.filter(x => String(x.recipe_id)===String(recipeId)); }
+function scoreParts(r){
+  const parts = [];
+  if (r.base_score != null) parts.push({ kind: "base", user_id: ownerOf(r), score: Number(r.base_score) });
+  loggedScoresFor(r.id).forEach(t => parts.push({ kind: "drink", user_id: t.user_id, score: Number(t.score), place: t.place, date: t.date }));
+  return parts;
+}
 function recipeScore(r){
-  const rs = ratingsFor(r.id);
+  if (hasBase()){
+    const parts = scoreParts(r);
+    if (parts.length) return parts.reduce((a,p) => a + p.score, 0) / parts.length;
+  }
+  const rs = ratingsFor(r.id);                       // before the update: per-person scores
   if (rs.length) return rs.reduce((a,x) => a + Number(x.score), 0) / rs.length;
   const legacy = Number(r.rating);
   return legacy > 0 ? legacy : null;
@@ -1215,9 +1241,24 @@ function fmtScore(v){
 }
 function scoreBig(v){ return v == null ? `<span class="bigscore none">not scored</span>` : `<span class="bigscore">${fmtScore(v)}<small>/10</small></span>`; }
 function peopleHTML(r){
-  const rs = ratingsFor(r.id);
-  if (!rs.length) return (Number(r.rating) > 0) ? `<div class="people-scores muted">Shared score from before separate scores</div>` : "";
-  return `<div class="people-scores">${rs.map(x => `<span>${avatarHTML(x.user_id)} ${esc(displayName(x.user_id))}: <b>${fmtScore(Number(x.score))}</b></span>`).join("")}${rs.length>1?`<span class="muted">average ${fmtScore(recipeScore(r))}</span>`:""}</div>`;
+  if (!hasBase()){
+    const rs = ratingsFor(r.id);
+    if (!rs.length) return (Number(r.rating) > 0) ? `<div class="people-scores muted">Shared score from before the update</div>` : "";
+    return `<div class="people-scores">${rs.map(x => `<span>${avatarHTML(x.user_id)} ${esc(displayName(x.user_id))}: <b>${fmtScore(Number(x.score))}</b></span>`).join("")}</div>`;
+  }
+  const parts = scoreParts(r);
+  if (!parts.length) return `<div class="people-scores muted">No score yet</div>`;
+  const drinks = parts.filter(p => p.kind === "drink").length;
+  return `<div class="people-scores">
+    ${r.base_score != null ? `<span>${avatarHTML(ownerOf(r))} base <b>${fmtScore(Number(r.base_score))}</b></span>` : ""}
+    ${drinks ? `<span class="muted">+ ${drinks} logged drink${drinks===1?"":"s"}</span>` : ""}
+    ${parts.length > 1 ? `<span class="muted">average ${fmtScore(recipeScore(r))}</span>` : ""}
+  </div>`;
+}
+async function saveBaseScore(recipeId, v){
+  await api("PATCH","recipes",`?id=eq.${recipeId}`, { base_score: v });
+  const r = recipes.find(x => String(x.id)===String(recipeId));
+  if (r) r.base_score = v;
 }
 async function saveMyRating(recipeId, v){
   if (!features.ratings){
@@ -1515,9 +1556,17 @@ function showDetail(id){
           </div>
           ${(spice||tagChips||meta) ? `<div class="tags" style="margin-top:12px">${spice}${tagChips}${meta}</div>` : ""}
           <div class="panel" style="margin-top:16px">
-            <span class="lbl">${features.ratings ? "Your score" : "Score"}</span>
-            <div id="detailRater"></div>
-            <p class="muted" id="detailRaterStatus" style="margin:6px 0 0" aria-live="polite"></p>
+            ${!hasBase() ? `<span class="lbl">${features.ratings ? "Your score" : "Score"}</span>
+              <div id="detailRater"></div>
+              <p class="muted" id="detailRaterStatus" style="margin:6px 0 0" aria-live="polite"></p>`
+            : canSetBase(r) ? `<span class="lbl">Base score${ownerOf(r) ? "" : " (nobody's claimed this recipe)"}</span>
+              <div id="detailRater"></div>
+              <p class="muted" id="detailRaterStatus" style="margin:6px 0 0" aria-live="polite">Yours to set, as the person who added it. Everyone else moves the average by logging a drink.</p>`
+            : `<span class="lbl">Base score</span>
+              <p style="margin:4px 0 0;font-size:20px">${avatarHTML(ownerOf(r))} <b>${r.base_score != null ? fmtScore(Number(r.base_score)) : "not set"}</b>
+                <span class="muted" style="font-size:15px">set by ${esc(displayName(ownerOf(r)))}</span></p>
+              <p class="muted" style="margin:6px 0 0">Only ${esc(displayName(ownerOf(r)))} can change that. To move the average, log a drink.</p>
+              <button type="button" id="logMoveBtn" style="margin-top:10px">+ Log a drink of this</button>`}
           </div>
           ${steps.length ? `<button class="btn-primary" type="button" id="cookBtn" style="margin-top:14px;min-height:46px;width:100%;max-width:340px">Start cook mode</button>` : ""}
         </div>
@@ -1541,6 +1590,14 @@ function showDetail(id){
       ${steps.length ? `<div class="section-title">How to make</div><ol class="method">${steps.map((s,i) => `<li><span class="n">${i+1}</span><span>${esc(s)}</span></li>`).join("")}</ol>` : ""}
       ${r.notes ? `<div class="section-title">Notes</div><p class="notes">${esc(r.notes)}</p>` : ""}
 
+      ${hasBase() && scoreParts(r).length ? `<div class="section-title">How the score is made up</div>
+        <table class="ing-table"><tbody>${scoreParts(r).map(p => `<tr>
+          <td class="amt">${fmtScore(p.score)}</td>
+          <td>${avatarHTML(p.user_id)} ${esc(displayName(p.user_id))}${p.kind === "base" ? ` <span class="muted">base score</span>` : ` <span class="muted">drink at ${esc(p.place || "somewhere")}${p.date ? `, ${esc(formatDate(p.date))}` : ""}</span>`}</td>
+        </tr>`).join("")}
+        <tr><td class="amt"><b>${fmtScore(recipeScore(r))}</b></td><td class="muted">average of ${scoreParts(r).length}</td></tr>
+        </tbody></table>` : ""}
+
       ${features.tastings ? `<div class="section-title">Had one of these</div>
         ${seen.length ? `<ul>${seen.slice(0,8).map(t => `<li>${esc(t.place||"Somewhere")}${t.date ? `, ${esc(formatDate(t.date))}` : ""}. ${esc(displayName(t.user_id))}${t.score!=null ? ` gave it <b>${fmtScore(Number(t.score))}</b>` : ""}</li>`).join("")}</ul>` : `<p class="muted">Not logged yet.</p>`}
         <button type="button" id="logThisBtn" style="margin-top:10px">+ Log one of these</button>` : ""}
@@ -1558,8 +1615,12 @@ function showDetail(id){
         </button>`).join("")}</div>` : `<p class="muted">Give recipes shared tags and related ones show up here.</p>`}
     </article>`;
 
-  const myVal = features.ratings ? myRating(r.id) : (Number(r.rating) > 0 ? Number(r.rating) : null);
-  mountRater($("detailRater"), myVal, v => queueMyRating(r.id, v));
+  if ($("detailRater")){
+    const val = hasBase() ? (r.base_score != null ? Number(r.base_score) : null)
+              : (features.ratings ? myRating(r.id) : (Number(r.rating) > 0 ? Number(r.rating) : null));
+    mountRater($("detailRater"), val, v => queueMyRating(r.id, v));
+  }
+  const lm = $("logMoveBtn"); if (lm) lm.onclick = () => openLogModal(null, r.id);
   const cb = $("cookBtn"); if (cb) cb.onclick = () => { location.hash = `#/recipe/${r.id}/cook`; };
   const lb = $("logThisBtn"); if (lb) lb.onclick = () => openLogModal(null, r.id);
   const redrawIngs = () => {
@@ -1583,10 +1644,10 @@ function queueMyRating(recipeId, v){
   clearTimeout(rateTimer);
   rateTimer = setTimeout(async () => {
     try {
-      await saveMyRating(recipeId, v);
+      if (hasBase()) await saveBaseScore(recipeId, v); else await saveMyRating(recipeId, v);
       const r = recipes.find(x => String(x.id)===String(recipeId));
       if (r && $("detailScore")){ $("detailScore").innerHTML = scoreBig(recipeScore(r)); $("detailPeople").innerHTML = peopleHTML(r); }
-      const s2 = $("detailRaterStatus"); if (s2) s2.textContent = v == null ? "Score cleared." : "Score saved.";
+      const s2 = $("detailRaterStatus"); if (s2) s2.textContent = v == null ? "Base score cleared." : "Base score saved.";
     } catch(e){ const s2 = $("detailRaterStatus"); if (s2) s2.textContent = "Couldn't save your score: " + e.message; }
   }, 600);
 }
@@ -1918,12 +1979,10 @@ async function saveLog(){
   finally { btn.disabled = false; btn.innerHTML = orig; }
 }
 async function delLog(){
-  if (!logEditingId || !confirm("Delete this drink from the log?")) return;
-  try {
-    await api("DELETE","tastings",`?id=eq.${logEditingId}`);
-    tastings = tastings.filter(t => String(t.id)!==String(logEditingId));
-    closeLogModal(); showInfo("Drink deleted."); route(true);
-  } catch(e){ showErr("Couldn't delete the drink. " + e.message); }
+  if (!logEditingId) return;
+  const id = logEditingId;
+  closeLogModal();
+  await deleteDrink(id);
 }
 
 /* ================= SHOPPING LIST ================= */
@@ -2016,14 +2075,18 @@ function renderFormSteps(){
   box.querySelectorAll("[data-up]").forEach(b => b.onclick = () => { const i = +b.dataset.up; [formSteps[i-1], formSteps[i]] = [formSteps[i], formSteps[i-1]]; renderFormSteps(); });
   box.querySelectorAll("[data-down]").forEach(b => b.onclick = () => { const i = +b.dataset.down; [formSteps[i+1], formSteps[i]] = [formSteps[i], formSteps[i+1]]; renderFormSteps(); });
 }
-function mountFormRater(){
-  $("f-rater-label").textContent = features.ratings ? "Your score" : "Score";
+function mountFormRater(canEdit = true){
+  $("f-rater-label").textContent = hasBase() ? "Base score" : (features.ratings ? "Your score" : "Score");
+  if (!canEdit){
+    $("f-rater").innerHTML = `<p class="muted" style="margin:0">Only the person who added this recipe can change its base score. Log a drink to move the average instead.</p>`;
+    return;
+  }
   mountRater($("f-rater"), formRating, v => { formRating = v; });
 }
 function openModal(){ $("modalBg").classList.add("show"); $("modalBg").scrollTop = 0; }
 function closeModal(){ $("modalBg").classList.remove("show"); resetForm(); }
 function resetForm(){
-  editingId = null; formRating = null; formTagIds = []; formSteps = []; formPhotoUrl = null; formPhotoFile = null;
+  editingId = null; formRating = null; formBaseEditable = true; formTagIds = []; formSteps = []; formPhotoUrl = null; formPhotoFile = null;
   ["f-name","f-source","f-ingredients","f-notes","f-location","f-date"].forEach(i => $(i).value = "");
   $("f-spice").value = ""; $("f-photo").value = ""; $("f-photo-cam").value = "";
   $("modalTitle").textContent = "Add recipe";
@@ -2032,7 +2095,9 @@ function resetForm(){
 function startEdit(id){
   const r = recipes.find(x => String(x.id)===String(id)); if (!r) return;
   editingId = id;
-  formRating = features.ratings ? myRating(r.id) : (Number(r.rating) > 0 ? Number(r.rating) : null);
+  formRating = hasBase() ? (r.base_score != null ? Number(r.base_score) : null)
+             : (features.ratings ? myRating(r.id) : (Number(r.rating) > 0 ? Number(r.rating) : null));
+  formBaseEditable = hasBase() ? canSetBase(r) : true;
   formTagIds = (r.tagIds||[]).slice();
   formSteps = recipeSteps(r).slice();
   formPhotoUrl = r.photo_url || null; formPhotoFile = null;
@@ -2040,7 +2105,7 @@ function startEdit(id){
   $("f-location").value = r.location||""; $("f-date").value = r.date||"";
   $("f-ingredients").value = r.ingredients||""; $("f-notes").value = r.notes||"";
   $("modalTitle").textContent = "Edit recipe";
-  mountFormRater(); renderFormTags(); renderPhotoPreview(); renderFormSteps();
+  mountFormRater(formBaseEditable); renderFormTags(); renderPhotoPreview(); renderFormSteps();
   openModal();
 }
 async function saveRecipe(){
@@ -2062,13 +2127,14 @@ async function saveRecipe(){
       steps: cleanSteps.length ? JSON.stringify(cleanSteps) : null,
       photo_url: formPhotoUrl || null
     };
-    if (!features.ratings) data.rating = formRating ?? 0;
+    if (hasBase()){ if (formBaseEditable) data.base_score = formRating; }
+    else if (!features.ratings) data.rating = formRating ?? 0;
     let recId = editingId;
     if (editingId) await api("PATCH","recipes",`?id=eq.${editingId}`, data);
     else { const created = await api("POST","recipes","", data, { "Prefer":"return=representation" }); recId = created[0].id; }
     await api("DELETE","recipe_tags",`?recipe_id=eq.${recId}`);
     if (formTagIds.length) await api("POST","recipe_tags","", formTagIds.map(tid => ({ recipe_id: recId, tag_id: tid })));
-    if (features.ratings && formRating !== myRating(recId)) await saveMyRating(recId, formRating);
+    if (!hasBase() && features.ratings && formRating !== myRating(recId)) await saveMyRating(recId, formRating);
     const wasNew = !editingId;
     closeModal(); hideErr();
     await loadAll();
@@ -2202,12 +2268,45 @@ function openAccount(){
   $("acctEmail").textContent = currentUserEmail();
   $("acctPhotoStatus").textContent = "";
   renderAcctAvatar();
+  renderAcctDrinks();
   $("acctName").value = profiles.find(p => p.user_id === myId())?.display_name || "";
   $("acctNameNote").textContent = features.profiles ? "" : "Names need the database update in UPGRADE_SETUP.md.";
   $("acctNameSave").disabled = !features.profiles;
   $("accountModalBg").classList.add("show");
 }
 function closeAccount(){ $("accountModalBg").classList.remove("show"); }
+function renderAcctDrinks(){
+  const box = $("acctDrinks");
+  if (!features.tastings){ box.innerHTML = `<p class="muted" style="margin:0">The drinks log needs the database update in UPGRADE_SETUP.md.</p>`; return; }
+  const mine = tastings.filter(t => t.user_id === myId());
+  if (!mine.length){ box.innerHTML = `<p class="muted" style="margin:0">You haven't logged any drinks yet.</p>`; return; }
+  box.innerHTML = `<p class="muted" style="margin:0 0 6px">${mine.length} logged by you. Deleting one takes its score back out of that recipe's average.</p>
+    <div class="acct-drinks">${mine.map(t => {
+      const rec = t.recipe_id ? recipes.find(r => String(r.id)===String(t.recipe_id)) : null;
+      return `<div class="acct-drink">
+        <span class="grow">
+          <b>${esc(t.place || "Somewhere")}</b>
+          <span class="muted small" style="display:block">${esc(formatDate(t.date))}${rec ? `, our ${esc(rec.name)}` : ""}</span>
+        </span>
+        ${t.score != null ? `<span class="bigscore" style="font-size:20px">${fmtScore(Number(t.score))}</span>` : ""}
+        <button type="button" data-editdrink="${t.id}">Edit</button>
+        <button type="button" class="btn-del" data-deldrink="${t.id}" aria-label="Delete this drink">Delete</button>
+      </div>`;
+    }).join("")}</div>`;
+  box.querySelectorAll("[data-editdrink]").forEach(b => b.onclick = () => { closeAccount(); openLogModal(b.dataset.editdrink); });
+  box.querySelectorAll("[data-deldrink]").forEach(b => b.onclick = () => deleteDrink(b.dataset.deldrink, renderAcctDrinks));
+}
+async function deleteDrink(id, after){
+  const t = tastings.find(x => String(x.id)===String(id));
+  if (!confirm(`Delete the drink at ${t?.place || "this place"}? Its score comes out of the average.`)) return;
+  try {
+    await api("DELETE","tastings",`?id=eq.${id}`);
+    tastings = tastings.filter(x => String(x.id)!==String(id));
+    showInfo("Drink deleted.");
+    if (after) after();
+    route(true);
+  } catch(e){ showErr("Couldn't delete the drink. " + e.message); }
+}
 async function saveName(){
   const name = $("acctName").value.trim();
   if (!name){ $("acctName").focus(); return; }
