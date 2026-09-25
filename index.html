@@ -234,6 +234,29 @@
   .dis-list { list-style: none; padding: 0; margin: 0; }
   .dis-list li { border-bottom: 1px solid var(--rule); padding: 8px 0; }
 
+  /* ---------- Tomat-O-Meter: one left-to-right scale ---------- */
+  .meter { position: relative; margin: 18px 0 4px; }
+  .meter-axis { position: relative; height: 18px; font-size: 12px; color: var(--faint); margin-bottom: 6px; }
+  .meter-axis.foot { margin: 8px 0 0; }
+  .meter-axis span { position: absolute; transform: translateX(-50%); }
+  .meter-row { display: grid; grid-template-columns: minmax(120px, 210px) minmax(0, 1fr); align-items: center; gap: 14px;
+    width: 100%; text-align: left; background: none; border: 0; border-top: 1px solid var(--rule); padding: 12px 0; border-radius: 0; }
+  .meter-row:hover { background: var(--well); }
+  .meter-row:last-of-type { border-bottom: 1px solid var(--rule); }
+  .mr-name { font-weight: 600; font-size: 15px; overflow-wrap: anywhere; }
+  .mr-name .mv { display: inline; margin-left: 6px; }
+  .mr-track { position: relative; height: 26px;
+    background-image: repeating-linear-gradient(to right, var(--rule) 0 1px, transparent 1px 10%); }
+  .mr-track::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--rule-strong); }
+  .mr-fill { position: absolute; left: 0; top: 50%; transform: translateY(-50%); height: 4px; background: var(--brass); border-radius: 2px; }
+  .mr-dot { position: absolute; top: 50%; transform: translate(-50%, -50%); background: var(--brass); color: #fff;
+    min-width: 34px; height: 24px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  @media (max-width: 680px){
+    .meter-row { grid-template-columns: minmax(0,1fr); gap: 4px; padding: 10px 0; }
+    .meter-axis { display: none; }
+    .meter-axis.foot { display: block; }
+  }
+
   /* ---------- drinks log ---------- */
   #logMap { height: 300px; border: 1px solid var(--rule); margin: 0 0 14px; background: var(--well); }
   .log-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
@@ -561,10 +584,9 @@
   <!-- Bloody Mary sections (desktop and tablet; phones use the bottom bar) -->
   <nav class="subnav" data-toolnav="marys" style="display:none" aria-label="Bloody Mary sections">
     <a class="navlink" id="navRecipes" href="#/">The good stuff</a>
-    <a class="navlink" id="navLeague" href="#/league">League table</a>
+    <a class="navlink" id="navLeague" href="#/league">Tomat-O-Meter</a>
     <a class="navlink" id="navLog" href="#/log">Had one</a>
     <a class="navlink" id="navGallery" href="#/gallery">Visual evidence</a>
-    <a class="navlink" id="navBlog" href="#/blog">Written evidence</a>
     <button class="navlink" id="pantryBtn" type="button">What can I make?</button>
     <a class="navlink" id="navShopping" href="#/shopping">Shopping list</a>
     <button class="navlink" id="tagsBtn" type="button">Tags</button>
@@ -619,7 +641,6 @@
     </div>
     <div id="detailView" style="display:none"></div>
     <div id="galleryView" style="display:none"></div>
-    <div id="blogView" style="display:none"></div>
     <div id="aboutView" style="display:none"></div>
     <div id="leagueView" style="display:none"></div>
     <div id="logView" style="display:none"></div>
@@ -630,7 +651,7 @@
 <!-- Bottom tab bar (phones, Bloody Mary only) -->
 <nav class="tabbar" data-toolnav="marys" style="display:none" aria-label="Bloody Marys">
   <a class="tab" data-tab="recipes" href="#/"><span class="ti" aria-hidden="true">🍅</span>Recipes</a>
-  <a class="tab" data-tab="league" href="#/league"><span class="ti" aria-hidden="true">🏆</span>League</a>
+  <a class="tab" data-tab="league" href="#/league"><span class="ti" aria-hidden="true">📈</span>Meter</a>
   <button class="tab plus" type="button" id="tabPlus"><span class="ti" aria-hidden="true">+</span>Add</button>
   <button class="tab" type="button" id="tabPantry" data-tab="pantry"><span class="ti" aria-hidden="true">🧊</span>Can I make?</button>
   <button class="tab" type="button" id="tabMore" data-tab="more"><span class="ti" aria-hidden="true">☰</span>More</button>
@@ -655,7 +676,6 @@
     <ul class="sheet-list">
       <li><a href="#/log"><span class="ico" aria-hidden="true">🍹</span>Had one: drinks log and map</a></li>
       <li><a href="#/gallery"><span class="ico" aria-hidden="true">📷</span>Visual evidence</a></li>
-      <li><a href="#/blog"><span class="ico" aria-hidden="true">✍️</span>Written evidence</a></li>
       <li><a href="#/shopping"><span class="ico" aria-hidden="true">🛒</span>Shopping list</a></li>
       <li><button type="button" id="moreTags"><span class="ico" aria-hidden="true">🏷</span>Tags</button></li>
       <li><a href="#/about"><span class="ico" aria-hidden="true">ℹ️</span>About</a></li>
@@ -873,35 +893,6 @@
   </div>
 </div>
 
-<!-- BLOG POST EDITOR -->
-<div class="modal-bg" id="postModalBg">
-  <div class="modal wide" role="dialog" aria-labelledby="postModalTitle">
-    <h2 id="postModalTitle">New post</h2>
-    <div class="field">
-      <label for="p-title">Title</label>
-      <input type="text" id="p-title" placeholder="e.g. The hunt for the perfect rim" />
-    </div>
-    <div class="row">
-      <div class="field">
-        <label for="p-date">Date</label>
-        <input type="date" id="p-date" />
-      </div>
-      <div class="field">
-        <label for="p-author">Author</label>
-        <input type="text" id="p-author" placeholder="Your name" />
-      </div>
-    </div>
-    <div class="field">
-      <label for="p-body">Body</label>
-      <textarea id="p-body" rows="12" placeholder="Write your post… line breaks are kept."></textarea>
-    </div>
-    <div class="form-actions">
-      <button class="btn-primary" id="postSaveBtn" type="button">Publish</button>
-      <button id="postCancelBtn" type="button">Cancel</button>
-    </div>
-  </div>
-</div>
-
 <script>
 /* ============================================================
    CONFIG
@@ -925,11 +916,11 @@ const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&l
 function todayISO(){ const d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset()*60000).toISOString().slice(0,10); }
 
 /* ---------- state ---------- */
-let recipes = [], tags = [], posts = [], pantry = [];
+let recipes = [], tags = [], pantry = [];
 let recipeRatings = [], profiles = [], tastings = [], shopping = [];
 const features = { ratings: true, profiles: true, tastings: true, shopping: true };
 let isOffline = false;
-let editingId = null, editingPostId = null;
+let editingId = null;
 let formRating = null, formBaseEditable = true, formTagIds = [], formSteps = [], formPhotoUrl = null, formPhotoFile = null;
 let activeFilterTag = null, newTagEmoji = "🍅";
 let leagueMoves = null;
@@ -1073,7 +1064,7 @@ async function optionalGet(table, query, flag){
 }
 function applyData(d){
   recipes = (d.rec || []).map(r => ({ ...r, tagIds: (r.recipe_tags || []).map(x => x.tag_id) }));
-  tags = d.tg || []; pantry = (d.pan || []).map(p => p.ingredient); posts = d.po || [];
+  tags = d.tg || []; pantry = (d.pan || []).map(p => p.ingredient); 
   recipeRatings = d.rr || []; profiles = d.pr || []; tastings = d.ts || []; shopping = d.sh || [];
 }
 function readCache(){ try { return JSON.parse(localStorage.getItem("bm_cache") || "null"); } catch { return null; } }
@@ -1083,17 +1074,16 @@ async function loadAll(){
   if (!session){ showAuth(); return; }
   try {
     hideErr();
-    const [rec, tg, pan, po, rr, pr, ts, sh] = await Promise.all([
+    const [rec, tg, pan, rr, pr, ts, sh] = await Promise.all([
       api("GET", "recipes", "?select=*,recipe_tags(tag_id)"),
       api("GET", "tags", "?select=*&order=name.asc"),
       api("GET", "pantry", "?select=ingredient"),
-      api("GET", "posts", "?select=*&order=date.desc"),
       optionalGet("recipe_ratings", "?select=*", "ratings"),
       optionalGet("profiles", "?select=*", "profiles"),
       optionalGet("tastings", "?select=*&order=date.desc,created_at.desc", "tastings"),
       optionalGet("shopping_items", "?select=*&order=created_at.asc", "shopping")
     ]);
-    const d = { rec, tg, pan, po, rr, pr, ts, sh };
+    const d = { rec, tg, pan, rr, pr, ts, sh };
     applyData(d);
     isOffline = false;
     try { localStorage.setItem("bm_cache", JSON.stringify({ ...d, features, at: Date.now() })); } catch {}
@@ -1143,9 +1133,9 @@ function showApp(){
   document.body.classList.add("has-tabbar");
 }
 
-const VIEWS = ["listView","detailView","galleryView","blogView","aboutView","leagueView","logView","shoppingView"];
+const VIEWS = ["listView","detailView","galleryView","aboutView","leagueView","logView","shoppingView"];
 function showOnly(id){ VIEWS.forEach(v => { const el = $(v); if (el) el.style.display = (v === id ? "" : "none"); }); }
-const NAV_IDS = ["navRecipes","navLeague","navLog","navGallery","navBlog","navShopping","navAbout"];
+const NAV_IDS = ["navRecipes","navLeague","navLog","navGallery","navShopping","navAbout"];
 function setActiveNav(name, tab){
   NAV_IDS.forEach(n => $(n)?.classList.remove("active"));
   if (name) $(name)?.classList.add("active");
@@ -1164,9 +1154,7 @@ function route(keepScroll = false){
   const M = (view, nav, tab) => { showOnly(view); setActiveNav(nav, tab); };
   if ((m = hash.match(/^#\/recipe\/([^/]+)\/cook$/))){ M("detailView", "navRecipes", "recipes"); showDetail(m[1]); openCook(m[1]); }
   else if ((m = hash.match(/^#\/recipe\/([^/]+)$/))){ M("detailView", "navRecipes", "recipes"); showDetail(m[1]); }
-  else if ((m = hash.match(/^#\/post\/([^/]+)$/))){ M("blogView", "navBlog", "more"); showPost(m[1]); }
   else if (hash === "#/gallery"){ M("galleryView", "navGallery", "more"); renderGallery(); }
-  else if (hash === "#/blog"){ M("blogView", "navBlog", "more"); renderBlog(); }
   else if (hash === "#/about"){ M("aboutView", "navAbout", "more"); renderAbout(); }
   else if (hash === "#/league"){ M("leagueView", "navLeague", "league"); renderLeague(); }
   else if (hash === "#/log"){ M("logView", "navLog", "more"); renderLog(); }
@@ -1718,77 +1706,6 @@ function renderGallery(){
 function openLightbox(src){ $("lightboxImg").src = src; $("lightbox").classList.add("show"); }
 function closeLightbox(){ $("lightbox").classList.remove("show"); $("lightboxImg").src = ""; }
 
-/* ================= BLOG ================= */
-function postExcerpt(body){ const t = (body||"").replace(/\s+/g," ").trim(); return t.length > 180 ? t.slice(0,180) + "…" : t; }
-function renderBlog(){
-  const view = $("blogView");
-  const head = `<div class="page-head" style="max-width:720px;margin:0 auto 6px"><h2 class="tool-title">Blog</h2><button class="btn-primary" type="button" onclick="openPostEditor()">+ New post</button></div>`;
-  if (!posts.length){ view.innerHTML = head + `<div class="blog-list"><div class="empty"><p>No posts yet.</p></div></div>`; return; }
-  view.innerHTML = head + `<div class="blog-list">${posts.map(p => `
-    <div class="post-item" onclick="location.hash='#/post/${p.id}'">
-      <h3 class="post-title">${esc(p.title||"Untitled")}</h3>
-      <p class="post-meta">${esc(formatDate(p.date))}${p.author ? `, ${esc(p.author)}` : ""}</p>
-      <p class="post-excerpt">${esc(postExcerpt(p.body))}</p>
-    </div>`).join("")}</div>`;
-}
-function showPost(id){
-  const p = posts.find(x => String(x.id)===String(id));
-  const view = $("blogView");
-  if (!p){ view.innerHTML = `<button class="back-btn" type="button" onclick="location.hash='#/blog'">← All posts</button><div class="empty"><p>Post not found.</p></div>`; return; }
-  view.innerHTML = `
-    <button class="back-btn" type="button" onclick="location.hash='#/blog'">← All posts</button>
-    <article class="post-full">
-      <h1>${esc(p.title||"Untitled")}</h1>
-      <p class="post-meta">${esc(formatDate(p.date))}${p.author ? `, ${esc(p.author)}` : ""}</p>
-      <div class="post-body">${esc(p.body||"")}</div>
-      <div class="card-foot">
-        <button type="button" onclick="openPostEditor('${p.id}')">Edit post</button>
-        <button class="btn-del" type="button" onclick="delPost('${p.id}')">Delete post</button>
-      </div>
-    </article>`;
-}
-function openPostEditor(id){
-  editingPostId = id || null;
-  if (id){
-    const p = posts.find(x => String(x.id)===String(id));
-    $("postModalTitle").textContent = "Edit post";
-    $("p-title").value = p.title||""; $("p-date").value = p.date||""; $("p-author").value = p.author||""; $("p-body").value = p.body||"";
-  } else {
-    $("postModalTitle").textContent = "New post";
-    $("p-title").value = ""; $("p-author").value = displayName(myId()); $("p-body").value = ""; $("p-date").value = todayISO();
-  }
-  $("postModalBg").classList.add("show");
-}
-function closePostEditor(){ $("postModalBg").classList.remove("show"); editingPostId = null; }
-async function savePost(){
-  const title = $("p-title").value.trim();
-  if (!title){ $("p-title").focus(); return; }
-  const data = { title, date: $("p-date").value || todayISO(), author: $("p-author").value.trim() || null, body: $("p-body").value.trim() || null };
-  const btn = $("postSaveBtn"); const orig = btn.innerHTML;
-  btn.disabled = true; btn.innerHTML = `<span class="spinner"></span> Publishing`;
-  try {
-    if (editingPostId) await api("PATCH","posts",`?id=eq.${editingPostId}`, data);
-    else await api("POST","posts","", data, { "Prefer":"return=minimal" });
-    const wasEditing = editingPostId;
-    closePostEditor();
-    posts = await api("GET","posts","?select=*&order=date.desc") || [];
-    if (wasEditing && (location.hash||"").includes("/post/")) showPost(wasEditing);
-    else if (location.hash === "#/blog") renderBlog();
-    else location.hash = "#/blog";
-    showInfo("Published.");
-  } catch(e){ showErr("Couldn't publish the post. " + e.message); }
-  finally { btn.disabled = false; btn.innerHTML = orig; }
-}
-async function delPost(id){
-  if (!confirm("Delete this post?")) return;
-  try {
-    await api("DELETE","posts",`?id=eq.${id}`);
-    posts = posts.filter(p => String(p.id)!==String(id));
-    if (location.hash === "#/blog") renderBlog(); else location.hash = "#/blog";
-    showInfo("Post deleted.");
-  } catch(e){ showErr("Couldn't delete the post. " + e.message); }
-}
-
 /* ================= ABOUT ================= */
 function renderAbout(){
   $("aboutView").innerHTML = `
@@ -1828,9 +1745,10 @@ function renderLeague(){
 
   const unrated = recipes.filter(r => recipeScore(r) == null);
   const dis = recipes.map(r => {
-    const rs = ratingsFor(r.id); if (rs.length < 2) return null;
-    const vals = rs.map(x => Number(x.score));
-    return { r, rs, spread: Math.max(...vals) - Math.min(...vals) };
+    const parts = hasBase() ? scoreParts(r) : ratingsFor(r.id).map(x => ({ user_id: x.user_id, score: Number(x.score) }));
+    if (parts.length < 2) return null;
+    const vals = parts.map(p => p.score);
+    return { r, parts, spread: Math.max(...vals) - Math.min(...vals) };
   }).filter(x => x && x.spread > 0).sort((a,b) => b.spread - a.spread).slice(0, 6);
 
   const podium = rated.slice(0, 3).map((x, i) => `
@@ -1840,23 +1758,29 @@ function renderLeague(){
       <span class="pn">${esc(x.r.name)}</span>${scoreBig(x.s)}
     </button>`).join("");
 
+  const axis = [0,2,4,6,8,10];
   view.innerHTML = `
     <div class="tool-page">
-      <h2 class="tool-title">League table</h2>
-      <p class="home-intro">Ranked by the average of everyone's scores. Arrows show movement since your last visit.</p>
-      ${!rated.length ? `<div class="empty"><p>Nothing scored yet. Open a recipe and give it a score.</p></div>` : `
-        <div class="podium">${podium}</div>
-        <table class="league"><tbody>
-          ${rated.map(x => `<tr>
-            <td class="pos">${ordinal(x.pos)}${mv(x.r.id)}</td>
-            <td><a href="#/recipe/${x.r.id}">${esc(x.r.name)}</a>${who(x.r) ? `<div class="muted small">${who(x.r)}</div>` : ""}</td>
-            <td class="sc">${fmtScore(x.s)}</td>
-          </tr>`).join("")}
-        </tbody></table>`}
-      <div class="section-title">Biggest disagreements</div>
-      ${!features.ratings ? `<p class="muted">Separate scores need the database update in UPGRADE_SETUP.md.</p>`
-        : dis.length ? `<ul class="dis-list">${dis.map(d => `<li><a href="#/recipe/${d.r.id}">${esc(d.r.name)}</a>: ${d.rs.map(x => `${esc(displayName(x.user_id))} ${fmtScore(Number(x.score))}`).join(" vs ")} <span class="muted">(${fmtScore(d.spread)} apart)</span></li>`).join("")}</ul>`
-        : `<p class="muted">No arguments yet. Once you've both scored the same recipe differently, it shows up here.</p>`}
+      <h2 class="tool-title">Tomat-O-Meter</h2>
+      <p class="home-intro">Every mary on one scale: the base score plus every drink logged against it. Arrows show movement since your last visit.</p>
+      ${!rated.length ? `<div class="empty"><p>Nothing scored yet. Add a recipe with a base score, or log a drink.</p></div>` : `
+        <div class="meter">
+          <div class="meter-axis" aria-hidden="true">${axis.map(n => `<span style="left:${n*10}%">${n}</span>`).join("")}</div>
+          ${rated.map(x => `
+            <button type="button" class="meter-row" onclick="location.hash='#/recipe/${x.r.id}'">
+              <span class="mr-name">${esc(x.r.name)}${mv(x.r.id)}</span>
+              <span class="mr-track">
+                <span class="mr-fill" style="width:${Math.max(2, x.s*10)}%"></span>
+                <span class="mr-dot" style="left:${x.s*10}%"><b>${fmtScore(x.s)}</b></span>
+              </span>
+            </button>`).join("")}
+          <div class="meter-axis foot" aria-hidden="true">${axis.map(n => `<span style="left:${n*10}%">${n}</span>`).join("")}</div>
+        </div>
+        <p class="muted small" style="margin:10px 0 0">Top of the meter: <b>${esc(rated[0].r.name)}</b> at ${fmtScore(rated[0].s)}. ${rated.length} scored.</p>`}
+
+      <div class="section-title">Widest spread</div>
+      ${dis.length ? `<ul class="dis-list">${dis.map(d => `<li><a href="#/recipe/${d.r.id}">${esc(d.r.name)}</a>: ${d.parts.map(p => `${esc(displayName(p.user_id))} ${fmtScore(p.score)}`).join(" vs ")} <span class="muted">(${fmtScore(d.spread)} apart)</span></li>`).join("")}</ul>`
+        : `<p class="muted">Nothing to argue about yet. Once a recipe has scores that disagree, they show up here.</p>`}
       ${unrated.length ? `<div class="section-title">Not scored yet</div><p>${unrated.map(r => `<a href="#/recipe/${r.id}">${esc(r.name)}</a>`).join(", ")}</p>` : ""}
     </div>`;
 }
@@ -2319,7 +2243,7 @@ async function saveName(){
   } catch(e){ $("acctNameNote").textContent = "Couldn't save your name: " + e.message; }
 }
 async function exportBackup(){
-  const tables = ["recipes","tags","recipe_tags","recipe_ratings","profiles","posts","tastings","shopping_items","pantry","cms_entries","cms_tags","cms_entry_tags","colour_photos"];
+  const tables = ["recipes","tags","recipe_tags","recipe_ratings","profiles","tastings","shopping_items","pantry","cms_entries","cms_tags","cms_entry_tags","colour_photos"];
   showInfo("Preparing your backup…");
   const out = { site: "The Farrow Bloody Mary Compendium", exported_at: new Date().toISOString(), tables: {} };
   try {
@@ -2389,8 +2313,6 @@ $("acctPhotoRemove").onclick = removeAvatar;
 $("acctExport").onclick = exportBackup;
 $("signOutBtn").onclick = () => { closeAccount(); signOut(); };
 $("acctCloseBtn").onclick = closeAccount;
-$("postSaveBtn").onclick = savePost;
-$("postCancelBtn").onclick = closePostEditor;
 $("authSubmit").onclick = submitAuth;
 $("authToggle").onclick = () => { authMode = authMode === "signin" ? "signup" : "signin"; refreshAuthUI(); $("authMsg").textContent = ""; };
 $("auth-pass").addEventListener("keydown", e => { if (e.key === "Enter") submitAuth(); });
@@ -2440,7 +2362,7 @@ $("cookStep").addEventListener("touchend", e => {
 
 /* modals: close on backdrop tap */
 [["modalBg", closeModal], ["tagModalBg", closeTagModal], ["pantryModalBg", closePantry], ["accountModalBg", closeAccount],
- ["postModalBg", closePostEditor], ["logModalBg", closeLogModal]].forEach(([id, fn]) => { $(id).addEventListener("click", e => { if (e.target === $(id)) fn(); }); });
+ ["logModalBg", closeLogModal]].forEach(([id, fn]) => { $(id).addEventListener("click", e => { if (e.target === $(id)) fn(); }); });
 
 $("lightbox").onclick = closeLightbox;
 $("errBanner").onclick = hideErr;
@@ -2452,7 +2374,7 @@ document.addEventListener("keydown", (e) => {
     return;
   }
   if (e.key === "Escape"){
-    closeSheets(); closeModal(); closeTagModal(); closePantry(); closeAccount(); closePostEditor();
+    closeSheets(); closeModal(); closeTagModal(); closePantry(); closeAccount();
     closeLogModal(); closeLightbox();
   }
 });
